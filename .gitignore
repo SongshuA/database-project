@@ -1,0 +1,5 @@
+# Intellij IDEA
+/out/
+
+# macOS
+.DS_Store

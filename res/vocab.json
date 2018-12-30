@@ -1,0 +1,8 @@
+{
+  "Community": {
+    "name": "社区名",
+    "propertyFee": "物业费收费标准",
+    "rentFee": "租用车位收费标准",
+    "purchaseFee": "购买车位收费标准"
+  }
+}

@@ -36,7 +36,7 @@ public class CommunityManager implements EntityManager<Community>{
 
     @Override
     public boolean update(Community entity) {
-        String name = entity.name;
+        String name = entity.getName();
         // 查找名称为 name 的小区对象并修改
 
         return false;
@@ -44,7 +44,7 @@ public class CommunityManager implements EntityManager<Community>{
 
     @Override
     public boolean delete(Community entity) {
-        String name = entity.name;
+        String name = entity.getName();
         // 查找名称为 name 的小区对象并删除
 
         return false;

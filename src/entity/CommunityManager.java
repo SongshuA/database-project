@@ -20,8 +20,11 @@ public class CommunityManager implements EntityManager<Community>{
     @Override
     public List<Community> get() {
         //在这里利用JDBC获取内容
+        List<Community> result = new ArrayList<>();
+        result.add(new Community( "知乎社区", 10.0f,10.0f, 10.0f));
+        result.add(new Community( "另一个社区", 20.0f,20.0f, 20.0f));
 
-        return new ArrayList<>();
+        return result;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class CommunityManager implements EntityManager<Community>{
 
     @Override
     public boolean update(Community entity) {
-        String name = entity.getName();
+        String name = entity.name;
         // 查找名称为 name 的小区对象并修改
 
         return false;
@@ -41,7 +44,7 @@ public class CommunityManager implements EntityManager<Community>{
 
     @Override
     public boolean delete(Community entity) {
-        String name = entity.getName();
+        String name = entity.name;
         // 查找名称为 name 的小区对象并删除
 
         return false;

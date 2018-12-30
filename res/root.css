@@ -1,2 +1,94 @@
 .panel{
+    -fx-padding: 20px 10px;
+}
+
+.container{
+    -fx-background-color: #fff;
+    -fx-background-insets: 0;
+}
+
+.info-pane{
+    -fx-hgap: 20px;
+    -fx-vgap: 10px;
+    -fx-background-color: #f8ffff;
+    -fx-border-color: #a9d5de;
+    -fx-padding: 20px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+
+.panel{
+    -fx-spacing: 15px;
+}
+
+.navigation{
+    -fx-background-insets: 0;
+    -fx-base: transparent;
+}
+
+.navigation .list-cell{
+    -fx-padding: 10px 20px;
+    -fx-font-size: 10pt;
+    -fx-background-color: #1b1c1d;
+    -fx-text-fill: #8d8e8e;
+}
+
+
+.navigation .list-cell:selected{
+    -fx-background-color: #207cee;
+    -fx-text-fill: #fff;
+}
+
+.btn{
+    -fx-padding: 10px 30px;
+    -fx-background-color: #e0e1e2;
+    -fx-font-size: 11pt;
+}
+
+.btn:hover{
+    -fx-background-color: #c5c5c5;
+}
+
+.btn-green{
+    -fx-background-color: #21ba45;
+    -fx-text-fill: #fff;
+}
+
+.btn-green:hover{
+    -fx-background-color: #249d41;
+}
+
+.btn-blue{
+    -fx-background-color: #3b5998;
+    -fx-text-fill: #fff;
+}
+
+.btn-blue:hover{
+    -fx-background-color: #5472b3;
+}
+
+.btn-red{
+    -fx-background-color: #ff0000;
+    -fx-text-fill: #fff;
+}
+
+.btn-red:hover{
+    -fx-background-color: #c60303;
+}
+
+.entity-table{
+    -fx-font-size: 11pt;
+    -fx-background-insets: 0;
+}
+
+.entity-table .table-cell{
+    -fx-padding: 10px 5px;
+}
+
+
+.title{
+    -fx-text-fill: #fff;
+    -fx-font-size: 18pt;
+    -fx-background-color: #3b5998;
+    -fx-padding: 20px;
 }

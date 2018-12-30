@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,15 +15,17 @@ public class InfoPane extends GridPane {
     private Map<String, TextField> values;
 
     public InfoPane(Class entityClass){
+        this.getStyleClass().add("info-pane");
         this.entityClass = entityClass;
         fields = entityClass.getDeclaredFields();
         values = new HashMap<>();
 
         int rows = fields.length;
         for(int i = 0; i < rows; i++){
-            Label label = new Label(Utils.translate(entityClass, fields[i].getName()));
+            String title = Utils.translate(entityClass, fields[i].getName());
+            Label label = new Label(title);
             TextField tf = new TextField();
-            tf.setPromptText(fields[i].getName());
+            tf.setPromptText(title);
             values.put(fields[i].getName(), tf);
 
             this.add(label, 0, i);
@@ -36,7 +37,9 @@ public class InfoPane extends GridPane {
         try{
             Entity entity = (Entity) entityClass.newInstance();
             for(Field f : fields){
-                Utils.setter(entity, f.getName(), values.get(f.getName()).getText(), f.getType());
+                String value = values.get(f.getName()).getText();
+                if(!value.isEmpty())
+                    Utils.setter(entity, f.getName(), value, f.getType());
             }
             return entity;
 

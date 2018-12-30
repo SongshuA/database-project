@@ -12,6 +12,7 @@ public class EntityTable extends TableView<Entity> {
     private EntityManager manager;
 
     public EntityTable(Class entityClass, EntityManager manager){
+        this.getStyleClass().add("entity-table");
         this.manager = manager;
 
         Field[] fields = entityClass.getDeclaredFields();

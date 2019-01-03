@@ -6,6 +6,8 @@ public class Community implements Entity{
     private Float rentFee;
     private Float purchaseFee;
 
+    public Community(){}
+
     public Community(String name, Float propertyFee, Float rentFee, Float purchaseFee) {
         this.name = name;
         this.propertyFee = propertyFee;

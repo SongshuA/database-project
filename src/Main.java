@@ -1,3 +1,5 @@
+import entity.Community;
+import entity.CommunityManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;

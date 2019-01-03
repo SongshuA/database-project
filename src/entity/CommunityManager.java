@@ -1,12 +1,16 @@
 package entity;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import util.MysqlConnection;
 
 public class CommunityManager implements EntityManager<Community>{
 
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
-    private CommunityManager(){}
+    public CommunityManager(){
+    }
 
     private static class SingletonFactory{
         private static CommunityManager instance = new CommunityManager();
@@ -20,30 +24,59 @@ public class CommunityManager implements EntityManager<Community>{
     @Override
     public List<Community> get() {
         //在这里利用JDBC获取内容
-
-        return new ArrayList<>();
+        String querySql = "SELECT * FROM community";
+        List<Community> result = new ArrayList<>();
+        try{
+            ResultSet rs = MysqlConnection.select(querySql);
+            while (rs.next()){
+                Community community = new Community(rs.getString("name"),rs.getFloat("property_fee"), rs.getFloat("rent_fee"),rs.getFloat("purchase_fee"));
+                result.add(community);
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
     public boolean insert(Community entity) {
         //插入对象 entity
-
-        return false;
+        String insertSql = "INSERT INTO community (name, property_fee, rent_fee, purchase_fee) values (?, ?, ?, ?)";
+        Object[] params = new Object[4];
+        params[0] = entity.getName();
+        params[1] = entity.getPropertyFee();
+        params[2] = entity.getRentFee();
+        params[3] = entity.getPurchaseFee();
+        MysqlConnection.executeUpdate(insertSql, params);
+        return true;
     }
 
     @Override
     public boolean update(Community entity) {
         String name = entity.getName();
+        Float property_fee = entity.getPropertyFee();
+        Float rent_fee = entity.getRentFee();
+        Float purchase_fee = entity.getPurchaseFee();
+        Object[] params = new Object[3];
         // 查找名称为 name 的小区对象并修改
-
-        return false;
+        String updateSql = "UPDATE community SET";
+        if (null != property_fee) updateSql += " property_fee='"+ property_fee +"' ,";
+        if (null != rent_fee) updateSql += " rent_fee='" + rent_fee + "' ,";
+        if (null != purchase_fee) updateSql += " purchase_fee='" + purchase_fee + "' ,";
+        updateSql =updateSql.substring(0, updateSql.length()-1) + "WHERE name =" + "'"+name+"'";
+        MysqlConnection.executeUpdate(updateSql);
+        return true;
     }
 
     @Override
     public boolean delete(Community entity) {
         String name = entity.getName();
         // 查找名称为 name 的小区对象并删除
-
-        return false;
+        String deleteSql = "DELETE FROM community WHERE name= ?";
+        Object[] params = new Object[1];
+        params[0] = name;
+        MysqlConnection.executeUpdate(deleteSql, params);
+        return true;
     }
 }

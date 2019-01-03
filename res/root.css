@@ -7,14 +7,25 @@
     -fx-background-insets: 0;
 }
 
-.info-pane{
+
+.info-pane,
+.parameter-pane{
     -fx-hgap: 20px;
     -fx-vgap: 10px;
-    -fx-background-color: #f8ffff;
-    -fx-border-color: #a9d5de;
     -fx-padding: 20px;
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
+}
+
+
+.info-pane{
+    -fx-background-color: #f8ffff;
+    -fx-border-color: #a9d5de;
+}
+
+.parameter-pane{
+    -fx-background-color: #fbfdef;
+    -fx-border-color: #8abc1e;
 }
 
 .panel{

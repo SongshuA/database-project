@@ -21,6 +21,9 @@ public class MonthBillManager {
     }
 
     public List<MonthBill> get(Integer household_id, Integer beginYear, Integer beginMonth, Integer endYear, Integer endMonth){
+        if(household_id == null && beginYear == null && endYear == null && endMonth == null) {
+            return get();
+        }
         List<Timestamp> timestamps = DateCreate.create(beginYear,beginMonth,endYear,endMonth);
         String selectProperty = "SELECT * FROM property_fee WHERE household_ID= ? and time between ? and ?";
         Object[] params = new Object[3];

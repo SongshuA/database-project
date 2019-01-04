@@ -119,6 +119,5 @@ public class DeviceTroubleshootingManager {
                 }
             }
         }
-        return deviceTroubleshootings;
-    }
+        return deviceTroubleshootings;    }
 }

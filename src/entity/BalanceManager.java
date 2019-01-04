@@ -62,7 +62,7 @@ public class BalanceManager implements EntityManager<Balance>{
             }
             return balances;
         }, params);
-        List<Balance> balancesOther = (List<Balance>)j;
+        List<Balance> balancesOther = (List<Balance>)e;
         List<Balance> balances = new ArrayList<>();
         if(null != balancesOther)balances.addAll(balancesOther);
         if(null != balancesParking) balances.addAll(balancesParking);

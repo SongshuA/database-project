@@ -10,17 +10,15 @@ public class Complaint implements Entity{
   private Timestamp time;
   private String description;
   private Integer householdId;
-  private Timestamp schedule;
   private String outcome;
   private Timestamp outcomeTime;
 
-  public Complaint(Integer id, String type, Timestamp time, String description, Integer householdId, Timestamp schedule, String outcome, Timestamp outcomeTime) {
+  public Complaint(Integer id, String type, Timestamp time, String description, Integer householdId, String outcome, Timestamp outcomeTime) {
     this.id = id;
     this.type = type;
     this.time = time;
     this.description = description;
     this.householdId = householdId;
-    this.schedule = schedule;
     this.outcome = outcome;
     this.outcomeTime = outcomeTime;
   }
@@ -68,16 +66,6 @@ public class Complaint implements Entity{
   public void setHouseholdId(Integer householdId) {
     this.householdId = householdId;
   }
-
-
-  public Timestamp getSchedule() {
-    return schedule;
-  }
-
-  public void setSchedule(Timestamp schedule) {
-    this.schedule = schedule;
-  }
-
 
   public String getOutcome() {
     return outcome;

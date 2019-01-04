@@ -1,5 +1,8 @@
 package entity;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +34,17 @@ public class ComplaintManager {
         return (List<Complaint>)o;
     }
 
-    public List<Complaint> get(Timestamp begin, Timestamp end) {
-//        String selectSql = "SELECT * FROM complaint WHERE time between '" + begin + "' and '" + end + "'";
+    public List<Complaint> get(Integer beginYear, Integer beginMonth, Integer endYear, Integer endMonth) {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        format.setLenient(false);
+        Timestamp begin = null;
+        Timestamp end = null;
+        try{
+            begin = new Timestamp(format.parse(beginYear + "-" + beginMonth +"-1 00:00:00").getTime());
+            end = new Timestamp(format.parse(endYear + "-" + endMonth+"-30 00:00:00").getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String selectSql = "SELECT * FROM complaint WHERE time between ? and ?";
         Object[] params = new Object[2];
         params[0] = begin;
@@ -47,7 +59,17 @@ public class ComplaintManager {
         return (List<Complaint>)o;
     }
 
-    public List<Complaint> get(Timestamp begin, Timestamp end, String community_name, Integer unit_ID,Integer house_ID,Integer household_ID,String type){
+    public List<Complaint> get(Integer beginYear, Integer beginMonth, Integer endYear, Integer endMonth, String community_name, Integer unit_ID,Integer house_ID,Integer household_ID,String type){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        format.setLenient(false);
+        Timestamp begin = null;
+        Timestamp end = null;
+        try{
+            begin = new Timestamp(format.parse(beginYear + "-" + beginMonth +"-1 00:00:00").getTime());
+            end = new Timestamp(format.parse(endYear + "-" + endMonth+"-30 00:00:00").getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String selectSql = "SELECT * FROM complaint natural join household natural join house natural join community WHERE time between '" + begin + "' and '" + end + "' ";
         if(null != community_name) selectSql += " and community_name='" + community_name + "'";
         if(null != unit_ID) selectSql += " and unit_ID='" + unit_ID + "'";
@@ -98,7 +120,7 @@ public class ComplaintManager {
         if (null != schedule) updateSql += "schedule='" + schedule + "' ,";
         if (null != outcome) updateSql += "outcome='" + schedule + "' ,";
         if (null != outcomeTime) updateSql += "outcome_time'" + outcomeTime + "' ,";
-        updateSql += " WHERE complaint_ID = '" + ID + "'";
+        updateSql += updateSql.substring(0, updateSql.length() - 1 ) + " WHERE complaint_ID = '" + ID + "'";
         MysqlConnection.executeUpdate(updateSql);
         return true;
     }

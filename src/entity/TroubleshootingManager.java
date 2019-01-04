@@ -64,7 +64,7 @@ public class TroubleshootingManager implements EntityManager<Troubleshooting> {
 
     @Override
     public boolean update(Troubleshooting entity) {
-        Integer troubleshooting_ID = entity.getTrobleshootingId();
+        Integer troubleshooting_ID = entity.getTroubleshootingId();
         Timestamp timestamp = entity.getTime();
         String operator = entity.getOperator();
         String description = entity.getDescription();
@@ -85,7 +85,7 @@ public class TroubleshootingManager implements EntityManager<Troubleshooting> {
     public boolean delete(Troubleshooting entity) {
         String deleteSql = "DELETE FROM troubleshooting WHERE troubleshooting_ID = ?";
         Object[] params = new Object[1];
-        params[0] = entity.getTrobleshootingId();
+        params[0] = entity.getTroubleshootingId();
         MysqlConnection.executeUpdate(deleteSql,params);
         return true;
     }

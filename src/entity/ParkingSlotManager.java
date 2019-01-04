@@ -28,7 +28,7 @@ public class ParkingSlotManager implements EntityManager<ParkingSlot>{
         });
         List<ParkingSlot> parkingSlots = (List<ParkingSlot>) o;
         int length = parkingSlots.size();
-        String amountSql = "SELECT parking_slot_ID sum(amount) as amount FROM parking_slot natural join park_fee group by parking_slot_ID";
+        String amountSql = "SELECT parking_slot_ID,sum(amount) as amount FROM parking_slot natural join park_fee group by parking_slot_ID";
         Object b = MysqlConnection.select(amountSql, rs -> {
             List<ParkingSlot> parkingSlots1 = new ArrayList<>();
             while (rs.next()){

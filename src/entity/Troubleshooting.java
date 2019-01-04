@@ -5,15 +5,15 @@ import java.sql.Timestamp;
 
 public class Troubleshooting implements Entity {
 
-  private Integer trobleshootingId;
+  private Integer troubleshootingId;
   private Timestamp time;
   private String operator;
   private String description;
   private Integer repairFeeId;
   private Integer deviceId;
 
-  public Troubleshooting(Integer trobleshootingId, Timestamp time, String operator, String description, Integer repairFeeId, Integer deviceId) {
-    this.trobleshootingId = trobleshootingId;
+  public Troubleshooting(Integer troubleshootingId, Timestamp time, String operator, String description, Integer repairFeeId, Integer deviceId) {
+    this.troubleshootingId = troubleshootingId;
     this.time = time;
     this.operator = operator;
     this.description = description;
@@ -21,12 +21,12 @@ public class Troubleshooting implements Entity {
     this.deviceId = deviceId;
   }
 
-  public Integer getTrobleshootingId() {
-    return trobleshootingId;
+  public Integer getTroubleshootingId() {
+    return troubleshootingId;
   }
 
-  public void setTrobleshootingId(Integer trobleshootingId) {
-    this.trobleshootingId = trobleshootingId;
+  public void setTroubleshootingId(Integer troubleshootingId) {
+    this.troubleshootingId = troubleshootingId;
   }
 
   public Timestamp getTime() {

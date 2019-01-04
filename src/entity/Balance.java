@@ -6,13 +6,23 @@ public class Balance implements Entity{
     private Float amount;
     private String type;
     private Timestamp time;
+    private String description;
 
     public Balance(){}
 
-    public Balance(Float amount, String type, Timestamp time) {
+    public Balance(Float amount, String type, Timestamp time, String description) {
         this.amount = amount;
         this.type = type;
         this.time = time;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Timestamp getTime() {

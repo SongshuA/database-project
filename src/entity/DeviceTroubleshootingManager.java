@@ -134,6 +134,5 @@ public class DeviceTroubleshootingManager implements EntityManager<DeviceTrouble
                 }
             }
         }
-        return deviceTroubleshootings;
-    }
+        return deviceTroubleshootings;    }
 }

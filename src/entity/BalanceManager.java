@@ -1,9 +1,6 @@
 package entity;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class BalanceManager implements EntityManager<Balance>{
         Object o = MysqlConnection.select(selectParkFee, rs->{
             List<Balance> balances = new ArrayList<>();
             while (rs.next()){
-                balances.add(new Balance(rs.getFloat("amount"), "parking",rs.getTimestamp("time")));
+                balances.add(new Balance(rs.getFloat("amount"), "parking",rs.getTimestamp("time"),rs.getString("description")));
             }
             return balances;
         }, params);
@@ -32,7 +29,7 @@ public class BalanceManager implements EntityManager<Balance>{
         Object b = MysqlConnection.select(selectProperty, rs->{
             List<Balance> balances = new ArrayList<>();
             while (rs.next()){
-                balances.add(new Balance(rs.getFloat("amount"), "property", rs.getTimestamp("time")));
+                balances.add(new Balance(rs.getFloat("amount"), "property", rs.getTimestamp("time"),rs.getString("description")));
             }
             return balances;
         }, params);
@@ -41,7 +38,7 @@ public class BalanceManager implements EntityManager<Balance>{
         Object j = MysqlConnection.select(selectRepair, rs->{
             List<Balance> balances = new ArrayList<>();
             while (rs.next()){
-                balances.add(new Balance(rs.getFloat("amount"), "repair", rs.getTimestamp("time")));
+                balances.add(new Balance(rs.getFloat("amount"), "repair", rs.getTimestamp("time"), rs.getString("description")));
             }
             return balances;
         },params);
@@ -50,7 +47,7 @@ public class BalanceManager implements EntityManager<Balance>{
         Object e = MysqlConnection.select(selectOther, rs->{
             List<Balance> balances = new ArrayList<>();
             while (rs.next()){
-                balances.add(new Balance(rs.getFloat("amount"), "other", rs.getTimestamp("time")));
+                balances.add(new Balance(rs.getFloat("amount"), "other", rs.getTimestamp("time"), rs.getString("description")));
             }
             return balances;
         }, params);
@@ -92,7 +89,7 @@ public class BalanceManager implements EntityManager<Balance>{
         Object o = MysqlConnection.select(selectParkFee, rs->{
             List<Balance> balances = new ArrayList<>();
             while (rs.next()){
-                balances.add(new Balance(rs.getFloat("amount"), "parking",rs.getTimestamp("time")));
+                balances.add(new Balance(rs.getFloat("amount"), "parking",rs.getTimestamp("time"),rs.getString("description")));
             }
             return balances;
         });
@@ -101,7 +98,7 @@ public class BalanceManager implements EntityManager<Balance>{
         Object b = MysqlConnection.select(selectProperty, rs->{
             List<Balance> balances = new ArrayList<>();
             while (rs.next()){
-                balances.add(new Balance(rs.getFloat("amount"), "property", rs.getTimestamp("time")));
+                balances.add(new Balance(rs.getFloat("amount"), "property", rs.getTimestamp("time"),rs.getString("description")));
             }
             return balances;
         });
@@ -110,7 +107,7 @@ public class BalanceManager implements EntityManager<Balance>{
         Object j = MysqlConnection.select(selectRepair, rs->{
             List<Balance> balances = new ArrayList<>();
             while (rs.next()){
-                balances.add(new Balance(rs.getFloat("amount"), "repair", rs.getTimestamp("time")));
+                balances.add(new Balance(rs.getFloat("amount"), "repair", rs.getTimestamp("time"),rs.getString("description")));
             }
             return balances;
         });
@@ -119,7 +116,7 @@ public class BalanceManager implements EntityManager<Balance>{
         Object e = MysqlConnection.select(selectOther, rs->{
             List<Balance> balances = new ArrayList<>();
             while (rs.next()){
-                balances.add(new Balance(rs.getFloat("amount"), "other", rs.getTimestamp("time")));
+                balances.add(new Balance(rs.getFloat("amount"), "other", rs.getTimestamp("time"),rs.getString("description")));
             }
             return balances;
         });

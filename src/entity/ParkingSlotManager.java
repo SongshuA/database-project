@@ -22,7 +22,7 @@ public class ParkingSlotManager implements EntityManager<ParkingSlot>{
         Object o = MysqlConnection.select(selectSql, rs->{
             List<ParkingSlot> parkingSlots = new ArrayList<>();
             while (rs.next()){
-                parkingSlots.add(new ParkingSlot(rs.getInt("parking_slot_ID"),rs.getString("position"),rs.getInt("occupied"),rs.getString("community_name"),rs.getString("type"),0));
+                parkingSlots.add(new ParkingSlot(rs.getInt("parking_slot_ID"),rs.getString("position"),rs.getInt("occupied"),rs.getString("community_name"),rs.getString("type"),(double)0));
             }
             return parkingSlots;
         });

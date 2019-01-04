@@ -8,6 +8,18 @@ import util.DateCreate;
 import util.MysqlConnection;
 
 public class TroubleshootingManager implements EntityManager<Troubleshooting> {
+    /* 单例模式，后续的实体管理器请按照这个格式设计 */
+    public TroubleshootingManager(){
+    }
+
+    private static class SingletonFactory{
+        private static TroubleshootingManager instance = new TroubleshootingManager();
+    }
+
+    public static TroubleshootingManager getInstance(){
+        return TroubleshootingManager.SingletonFactory.instance;
+    }
+
     @Override
     public List<Troubleshooting> get() {
         String selectSql = "SELECT * FROM troubleshooting";

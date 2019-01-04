@@ -8,6 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepairFeeManager implements EntityManager<RepairFee>{
+    /* 单例模式，后续的实体管理器请按照这个格式设计 */
+    public RepairFeeManager(){
+    }
+
+    private static class SingletonFactory{
+        private static RepairFeeManager instance = new RepairFeeManager();
+    }
+
+    public static RepairFeeManager getInstance(){
+        return RepairFeeManager.SingletonFactory.instance;
+    }
+
     @Override
     public List<RepairFee> get() {
         String selectSql = "SELECT * FROM repair_fee";

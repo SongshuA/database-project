@@ -8,6 +8,18 @@ import util.MysqlConnection;
 import util.DateCreate;
 
 public class RepairManager implements EntityManager<Repair> {
+    /* 单例模式，后续的实体管理器请按照这个格式设计 */
+    public RepairManager(){
+    }
+
+    private static class SingletonFactory{
+        private static RepairManager instance = new RepairManager();
+    }
+
+    public static RepairManager getInstance(){
+        return RepairManager.SingletonFactory.instance;
+    }
+
     @Override
     public List<Repair> get() {
         String selectSql = "SELECT * FROM repair";

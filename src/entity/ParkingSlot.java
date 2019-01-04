@@ -8,11 +8,11 @@ public class ParkingSlot implements Entity{
   private Integer occupied;
   private String communityName;
   private String type;
-  private double amount;
-
+  private Double amount;
+  
   public ParkingSlot(){}
 
-  public ParkingSlot(Integer id, String position, Integer occupied, String communityName, String type, double amount) {
+  public ParkingSlot(Integer id, String position, Integer occupied, String communityName, String type, Double amount) {
     this.id = id;
     this.position = position;
     this.occupied = occupied;
@@ -21,11 +21,11 @@ public class ParkingSlot implements Entity{
     this.amount = amount;
   }
 
-  public double getAmount() {
+  public Double getAmount() {
     return amount;
   }
 
-  public void setAmount(double amount) {
+  public void setAmount(Double amount) {
     this.amount = amount;
   }
 

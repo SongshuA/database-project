@@ -27,7 +27,7 @@ public class ParkingIncomeManager implements EntityManager<ParkingIncome>{
                 Object position = MysqlConnection.select(queryPosition, r->{
                     List<ParkingSlot> result1 = new ArrayList<>();
                     while (r.next()){
-                        ParkingSlot parkingSlot = new ParkingSlot(r.getInt("park_fee_ID"),r.getString("position"),null,null);
+                        ParkingSlot parkingSlot = new ParkingSlot(r.getInt("park_fee_ID"),r.getString("position"),null,null,null,null);
                         result1.add(parkingSlot);
                     }
                     return result1;

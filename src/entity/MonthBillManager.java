@@ -87,7 +87,7 @@ public class MonthBillManager implements EntityManager<MonthBill>{
             return monthBills;
         });
         List<MonthBill> monthBillsProperty = (List<MonthBill>)o;
-        String selectParking = "SELECT * FROM park_fee WHERE household_ID= ? and time between ? and ?";
+        String selectParking = "SELECT * FROM park_fee";
         Object b = MysqlConnection.select(selectParking, rs->{
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){

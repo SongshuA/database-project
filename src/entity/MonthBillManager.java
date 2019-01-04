@@ -13,11 +13,6 @@ public class MonthBillManager implements EntityManager<MonthBill>{
     private MonthBillManager() {}
 
     @Override
-    public List<MonthBill> get() {
-        return new ArrayList<>();
-    }
-
-    @Override
     public boolean insert(MonthBill entity) {
         return false;
     }

@@ -14,11 +14,6 @@ public class UserRepairManager implements EntityManager<UserRepair>{
     }
 
     @Override
-    public List<UserRepair> get() {
-        return new ArrayList<>();
-    }
-
-    @Override
     public boolean insert(UserRepair entity) {
         return false;
     }

@@ -14,11 +14,6 @@ public class DeviceTroubleshootingManager implements EntityManager<DeviceTrouble
     }
 
     @Override
-    public List<DeviceTroubleshooting> get() {
-        return new ArrayList<>();
-    }
-
-    @Override
     public boolean insert(DeviceTroubleshooting entity) {
         return false;
     }

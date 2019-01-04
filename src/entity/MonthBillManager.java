@@ -1,9 +1,6 @@
 package entity;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +35,9 @@ public class MonthBillManager implements EntityManager<MonthBill>{
     }
 
     public List<MonthBill> get(Integer household_id, Integer beginYear, Integer beginMonth, Integer endYear, Integer endMonth){
+        if(household_id == null && beginYear == null && endYear == null && endMonth == null) {
+            return get();
+        }
         List<Timestamp> timestamps = DateCreate.create(beginYear,beginMonth,endYear,endMonth);
         String selectProperty = "SELECT * FROM property_fee WHERE household_ID= ? and time between ? and ?";
         Object[] params = new Object[3];
@@ -58,7 +58,7 @@ public class MonthBillManager implements EntityManager<MonthBill>{
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"property"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"parking"));
             }
             return monthBills;
         }, params);
@@ -85,7 +85,7 @@ public class MonthBillManager implements EntityManager<MonthBill>{
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"property"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"parking"));
             }
             return monthBills;
         });

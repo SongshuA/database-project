@@ -6,9 +6,28 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComplaintReportManager {
+public class ComplaintReportManager implements EntityManager<ComplaintReport>{
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
-    public ComplaintReportManager() {
+    private ComplaintReportManager() {}
+
+    @Override
+    public List<ComplaintReport> get() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public boolean insert(ComplaintReport entity) {
+        return false;
+    }
+
+    @Override
+    public boolean update(ComplaintReport entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(ComplaintReport entity) {
+        return false;
     }
 
     private static class SingletonFactory {

@@ -1,14 +1,11 @@
 package entity;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import util.MysqlConnection;
 
 public class CommunityManager implements EntityManager<Community>{
-    private List<Community> list;
 
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
     private CommunityManager(){}

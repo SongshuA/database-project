@@ -1,4 +1,10 @@
 {
+  "common": {
+    "yearStart": "开始年份",
+    "yearEnd": "结束年份",
+    "monthStart": "开始月份",
+    "monthEnd": "结束月份"
+  },
   "Community": {
     "Community": "社区管理",
     "name": "社区名",
@@ -6,5 +12,21 @@
     "rentFee": "租用车位收费标准",
     "purchaseFee": "购买车位收费标准",
     "lessProperty": "物业费下限"
+  },
+  "Balance": {
+    "Balance": "集团收支明细",
+    "amount": "金额",
+    "type": "类型",
+    "time": "产生时间"
+  },
+  "Complaint": {
+    "Complaint": "投诉管理",
+    "id": "投诉单编号",
+    "type": "类目",
+    "time": "产生时间",
+    "description": "描述",
+    "householdId": "户主ID",
+    "outcome": "处理结果",
+    "outcomeTime": "处理时间"
   }
 }

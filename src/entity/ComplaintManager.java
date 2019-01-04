@@ -5,10 +5,9 @@ import java.util.List;
 
 import util.MysqlConnection;
 
-public class ComplaintManager {
+public class ComplaintManager implements EntityManager<Complaint>{
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
-    public ComplaintManager() {
-    }
+    private ComplaintManager() {}
 
     private static class SingletonFactory {
         private static ComplaintManager instance = new ComplaintManager();
@@ -101,5 +100,10 @@ public class ComplaintManager {
         updateSql += " WHERE complaint_ID = '" + ID + "'";
         MysqlConnection.executeUpdate(updateSql);
         return true;
+    }
+
+    @Override
+    public boolean delete(Complaint entity) {
+        return false;
     }
 }

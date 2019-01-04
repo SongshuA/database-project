@@ -5,9 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 import util.MysqlConnection;
 
-public class UserRepairManager {
+public class UserRepairManager implements EntityManager<UserRepair>{
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
-    public UserRepairManager(){
+    private UserRepairManager(){
+    }
+
+    @Override
+    public List<UserRepair> get() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public boolean insert(UserRepair entity) {
+        return false;
+    }
+
+    @Override
+    public boolean update(UserRepair entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(UserRepair entity) {
+        return false;
     }
 
     private static class SingletonFactory{

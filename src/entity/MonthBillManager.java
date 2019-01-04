@@ -5,9 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 import util.MysqlConnection;
 
-public class MonthBillManager {
+public class MonthBillManager implements EntityManager<MonthBill>{
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
-    public MonthBillManager() {
+    private MonthBillManager() {}
+
+    @Override
+    public List<MonthBill> get() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public boolean insert(MonthBill entity) {
+        return false;
+    }
+
+    @Override
+    public boolean update(MonthBill entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(MonthBill entity) {
+        return false;
     }
 
     private static class SingletonFactory {

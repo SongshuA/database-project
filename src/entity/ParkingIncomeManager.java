@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import util.MysqlConnection;
 
-public class ParkingIncomeManager {
+public class ParkingIncomeManager implements EntityManager<ParkingIncome>{
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
-    public ParkingIncomeManager(){
-    }
+    private ParkingIncomeManager(){ }
 
     private static class SingletonFactory{
         private static ParkingIncomeManager instance = new ParkingIncomeManager();
@@ -39,5 +38,20 @@ public class ParkingIncomeManager {
             return result;
         });
         return (List<ParkingIncome>)o;
+    }
+
+    @Override
+    public boolean insert(ParkingIncome entity) {
+        return false;
+    }
+
+    @Override
+    public boolean update(ParkingIncome entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(ParkingIncome entity) {
+        return false;
     }
 }

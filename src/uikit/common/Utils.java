@@ -54,15 +54,19 @@ public class Utils {
         }
 
         String name = classObj.getSimpleName();
-        if(vocab.has(name)){
-            JSONObject sub = null;
-            try {
-                sub = vocab.getJSONObject(name);
+        try{
+            if(vocab.has(name)){
+                JSONObject sub = vocab.getJSONObject(name);
                 if(sub.has(fieldName))
                     return sub.getString(fieldName);
-            } catch (JSONException e) {
-                return fieldName;
+
+            }else if(vocab.has("common")){
+                JSONObject sub = vocab.getJSONObject("common");
+                if(sub.has(fieldName))
+                    return sub.getString(fieldName);
             }
+        }catch (JSONException e){
+            return fieldName;
         }
         return fieldName;
     }

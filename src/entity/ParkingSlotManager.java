@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import util.MysqlConnection;
 
-public class ParkingSlotManager {
+public class ParkingSlotManager implements EntityManager<ParkingSlot>{
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
-    public ParkingSlotManager(){
+    private ParkingSlotManager(){
     }
 
     private static class SingletonFactory{
@@ -27,5 +27,20 @@ public class ParkingSlotManager {
             return parkingSlots;
         });
         return (List<ParkingSlot>) o;
+    }
+
+    @Override
+    public boolean insert(ParkingSlot entity) {
+        return false;
+    }
+
+    @Override
+    public boolean update(ParkingSlot entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(ParkingSlot entity) {
+        return false;
     }
 }

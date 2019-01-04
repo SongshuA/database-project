@@ -5,9 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 import util.MysqlConnection;
 
-public class DeviceTroubleshootingManager {
+public class DeviceTroubleshootingManager implements EntityManager<DeviceTroubleshooting>{
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
-    public DeviceTroubleshootingManager(){
+    private DeviceTroubleshootingManager(){
+    }
+
+    @Override
+    public List<DeviceTroubleshooting> get() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public boolean insert(DeviceTroubleshooting entity) {
+        return false;
+    }
+
+    @Override
+    public boolean update(DeviceTroubleshooting entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(DeviceTroubleshooting entity) {
+        return false;
     }
 
     private static class SingletonFactory{

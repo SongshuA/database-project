@@ -6,18 +6,9 @@ import java.util.List;
 
 import util.MysqlConnection;
 
-public class BalanceManager {
+public class BalanceManager implements EntityManager<Balance>{
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
-    public BalanceManager(){
-    }
-
-    private static class SingletonFactory{
-        private static BalanceManager instance = new BalanceManager();
-    }
-
-    public static BalanceManager getInstance(){
-        return BalanceManager.SingletonFactory.instance;
-    }
+    private BalanceManager(){}
 
     public List<Balance> get(Timestamp begin, Timestamp end){
 //        String selectParkFee = "SELECT * FROM park_fee WHERE time between '" + begin + "' and '" + end + "'";
@@ -67,4 +58,33 @@ public class BalanceManager {
         if(null != balancesRepair) balances.addAll(balancesRepair);
         return balances;
     }
+
+    @Override
+    public List<Balance> get() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public boolean insert(Balance entity) {
+        return false;
+    }
+
+    @Override
+    public boolean update(Balance entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Balance entity) {
+        return false;
+    }
+
+    private static class SingletonFactory{
+        private static BalanceManager instance = new BalanceManager();
+    }
+
+    public static BalanceManager getInstance(){
+        return BalanceManager.SingletonFactory.instance;
+    }
+
 }

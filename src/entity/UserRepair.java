@@ -3,7 +3,7 @@ package entity;
 public class UserRepair implements Entity{
     private Integer householdId;
     private Integer count;
-    private Integer cost;
+    private double countFee;
 
     public UserRepair(){}
 
@@ -23,17 +23,17 @@ public class UserRepair implements Entity{
         this.count = count;
     }
 
-    public Integer getCost() {
-        return cost;
+    public double getCountFee() {
+        return countFee;
     }
 
-    public void setCost(Integer cost) {
-        this.cost = cost;
+    public void setCountFee(Integer countFee) {
+        this.countFee = countFee;
     }
 
-    public UserRepair(Integer householdId, Integer count, Integer cost) {
+    public UserRepair(Integer householdId, Integer count, double countFee) {
         this.householdId = householdId;
         this.count = count;
-        this.cost = cost;
+        this.countFee = countFee;
     }
 }

@@ -34,7 +34,7 @@ public class MonthBillManager {
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getFloat("amount"), rs.getTimestamp("time"),paied,"property"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"), rs.getTimestamp("time"),paied,"property"));
             }
             return monthBills;
         }, params);
@@ -44,7 +44,7 @@ public class MonthBillManager {
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getFloat("amount"),rs.getTimestamp("time"),paied,"property"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"property"));
             }
             return monthBills;
         }, params);
@@ -61,7 +61,7 @@ public class MonthBillManager {
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getFloat("amount"), rs.getTimestamp("time"),paied,"property"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"), rs.getTimestamp("time"),paied,"property"));
             }
             return monthBills;
         });
@@ -71,7 +71,7 @@ public class MonthBillManager {
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getFloat("amount"),rs.getTimestamp("time"),paied,"property"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"property"));
             }
             return monthBills;
         });

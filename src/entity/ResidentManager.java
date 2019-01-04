@@ -5,6 +5,18 @@ import java.util.List;
 import util.MysqlConnection;
 
 public class ResidentManager implements EntityManager<Resident> {
+    /* 单例模式，后续的实体管理器请按照这个格式设计 */
+    public ResidentManager(){
+    }
+
+    private static class SingletonFactory{
+        private static ResidentManager instance = new ResidentManager();
+    }
+
+    public static ResidentManager getInstance(){
+        return ResidentManager.SingletonFactory.instance;
+    }
+
     @Override
     public List<Resident> get() {
         String selectSql = "SELECT * FROM resident";

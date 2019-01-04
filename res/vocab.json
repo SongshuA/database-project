@@ -38,7 +38,7 @@
     "DeviceTroubleshooting": "设备排查记录",
     "deviceId": "设备ID",
     "brokenCount": "损坏次数",
-    "repairCount": "维修次数",
+    "repairCount": "报修次数",
     "countFee": "维修总费用"
   },
   "MonthBill": {

@@ -70,16 +70,13 @@ public class DeviceTroubleshootingManager {
 
     public List<DeviceTroubleshooting> get(){
         String selectRepairFeeSql = "SELECT device_ID, count(*) as count, count(amount) as amounts FROM repair_fee natural join troubleshooting natural join device WHERE time between ? and ? group by device_ID";
-        Object[] params = new Object[2];
-        params[0] = begin;
-        params[1] = end;
         Object o = MysqlConnection.select(selectRepairFeeSql, rs -> {
             List<DeviceTroubleshooting> deviceTroubleshootings = new ArrayList<>();
             while (rs.next()){
                 deviceTroubleshootings.add(new DeviceTroubleshooting(rs.getInt("device_ID"),rs.getInt("count"),null,rs.getInt("amounts")));
             }
             return deviceTroubleshootings;
-        }, params);
+        });
         List<DeviceTroubleshooting> deviceTroubleshootings = new ArrayList<>();
         deviceTroubleshootings = (List<DeviceTroubleshooting>)o;
         int length = deviceTroubleshootings.size();
@@ -90,7 +87,7 @@ public class DeviceTroubleshootingManager {
                 deviceTroubleshootings1.add(new DeviceTroubleshooting(rs.getInt("device_ID"), null, rs.getInt("count"),0));
             }
             return deviceTroubleshootings1;
-        },params);
+        });
         List<DeviceTroubleshooting> deviceTroubleshootings1 =  (List<DeviceTroubleshooting>)b;
         int length1 = deviceTroubleshootings1.size();
         for(int i = 0;i<length;i++){

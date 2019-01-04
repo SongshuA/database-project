@@ -7,12 +7,12 @@ public class MainContainer extends Container {
         super();
 
         this.addPanel(new CommunityPanel());
+        this.addPanel(new ParkingSlotPanel());
+        this.addPanel(new FreeHousePanel());
         this.addPanel(new BalancePanel());
         this.addPanel(new ComplaintPanel());
-        this.addPanel(new DeviceTroubleshootingPanel());
         this.addPanel(new MonthBillPanel());
-        this.addPanel(new ParkingSlotPanel());
+        this.addPanel(new DeviceTroubleshootingPanel());
         this.addPanel(new UserRepairPanel());
-        this.addPanel(new FreeHousePanel());
     }
 }

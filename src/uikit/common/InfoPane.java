@@ -1,4 +1,4 @@
-package uikit;
+package uikit.common;
 
 import entity.Entity;
 import javafx.scene.control.Label;
@@ -50,6 +50,12 @@ public class InfoPane extends GridPane {
     }
 
     public void setEntity(Entity entity){
+        if(entity == null){
+            for(Map.Entry<String, TextField> entry : values.entrySet()){
+                entry.getValue().setText("");
+            }
+            return;
+        }
         for(Field f : fields){
             Object value = Utils.getter(entity, f.getName());
             if(value != null)

@@ -1,4 +1,4 @@
-package uikit;
+package uikit.common;
 
 import entity.Entity;
 import org.json.JSONException;
@@ -7,6 +7,8 @@ import sun.applet.Main;
 
 import java.io.*;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utils {
     private static JSONObject vocab;
@@ -65,7 +67,7 @@ public class Utils {
         return fieldName;
     }
 
-    public static JSONObject readJSON(InputStream stream) throws IOException {
+    private static JSONObject readJSON(InputStream stream) throws IOException {
         StringBuilder result = new StringBuilder();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(stream));
@@ -76,6 +78,14 @@ public class Utils {
         try {
             return new JSONObject(result.toString());
         } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    public static Float parseFloat(String str){
+        try{
+            return Float.parseFloat(str);
+        }catch (NumberFormatException e){
             return null;
         }
     }

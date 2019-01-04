@@ -1,4 +1,4 @@
-package uikit;
+package uikit.common;
 
 import entity.Entity;
 import entity.EntityManager;
@@ -28,11 +28,13 @@ public class EntityTable extends TableView<Entity> {
     }
 
     public void refresh(){
-        this.getItems().clear();
-        List entities = manager.get();
-        for(Object entity : entities)
-            this.getItems().add((Entity)entity);
+        this.refresh(manager.get());
+    }
 
+    public void refresh(List<Entity> list){
+        this.getItems().clear();
+        for(Object entity : list)
+            this.getItems().add((Entity)entity);
     }
 
 }

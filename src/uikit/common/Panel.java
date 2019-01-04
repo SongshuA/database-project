@@ -1,4 +1,4 @@
-package uikit;
+package uikit.common;
 
 import entity.Entity;
 import entity.EntityManager;
@@ -10,32 +10,38 @@ import javafx.scene.layout.VBox;
 
 
 
-public class Panel extends VBox {
+public abstract class Panel extends VBox {
     private String title;
-    private EntityManager manager;
-    private EntityTable table;
+    protected EntityManager manager;
+    protected EntityTable table;
     private InfoPane infoPane;
+    protected QueryPane queryPane;
 
-    public Panel(String title, Class entityClass, EntityManager manager){
+    public Panel(Class entityClass, EntityManager manager, String[] queryItems, boolean writable){
         this.getStyleClass().add("panel");
-        this.title = title;
+        this.title = Utils.translate(entityClass, entityClass.getSimpleName());
         this.manager = manager;
 
-        infoPane = new InfoPane(entityClass);
+        if(queryItems != null && queryItems.length > 0){
+            queryPane = new QueryPane(entityClass, queryItems);
+            this.getChildren().add(queryPane);
+        }
 
         table = new EntityTable(entityClass, manager);
-        table.getSelectionModel().selectedItemProperty().addListener(
-                (ObservableValue<? extends Entity> observable, Entity oldValue, Entity newValue) -> {
-                    infoPane.setEntity(newValue);
-                }
-        );
-
         setVgrow(table, Priority.ALWAYS);
 
+        if(writable){
+            table.getSelectionModel().selectedItemProperty().addListener(
+                    (ObservableValue<? extends Entity> observable, Entity oldValue, Entity newValue) -> {
+                        infoPane.setEntity(newValue);
+                    }
+            );
+            infoPane = new InfoPane(entityClass);
+            HBox buttonBar = generateButtonBar();
+            this.getChildren().addAll(infoPane, buttonBar);
+        }
 
-        HBox buttonBar = generateButtonBar();
-
-        this.getChildren().addAll(infoPane, buttonBar, table);
+        this.getChildren().add(table);
     }
 
     private HBox generateButtonBar(){
@@ -49,17 +55,22 @@ public class Panel extends VBox {
         deleteButton.getStyleClass().addAll("btn", "btn-red");
 
         insertButton.setOnAction(e -> {
-            manager.insert(infoPane.getEntity());
+            Entity entity = infoPane.getEntity();
+            if(entity != null)
+                manager.insert(entity);
+            table.refresh();
         });
 
         deleteButton.setOnAction(e -> {
             Entity entity = table.getSelectionModel().getSelectedItem();
             if(entity != null)
                 manager.delete(entity);
+            table.refresh();
         });
 
         updateButton.setOnAction(e -> {
             manager.update(infoPane.getEntity());
+            table.refresh();
         });
 
         buttonBar.getChildren().addAll(updateButton, insertButton, deleteButton);

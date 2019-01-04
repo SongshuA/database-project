@@ -5,10 +5,10 @@ import java.sql.Timestamp;
 public class MonthBill implements Entity{
     private Float amount;
     private Timestamp time;
-    private boolean paied;
+    private Boolean paied;
     private String type;
 
-    public MonthBill(Float amount, Timestamp time, boolean paied, String type) {
+    public MonthBill(Float amount, Timestamp time, Boolean paied, String type) {
         this.amount = amount;
         this.time = time;
         this.paied = paied;
@@ -31,11 +31,11 @@ public class MonthBill implements Entity{
         this.time = time;
     }
 
-    public boolean isPaied() {
+    public Boolean isPaied() {
         return paied;
     }
 
-    public void setPaied(boolean paied) {
+    public void setPaied(Boolean paied) {
         this.paied = paied;
     }
 

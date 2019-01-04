@@ -27,7 +27,12 @@
     "description": "描述",
     "householdId": "户主ID",
     "outcome": "处理结果",
-    "outcomeTime": "处理时间"
+    "outcomeTime": "处理时间",
+
+    "community_name": "社区名",
+    "unit_ID": "单元ID",
+    "house_ID": "房屋ID",
+    "household_ID": "住户ID"
   },
   "DeviceTroubleshooting":{
     "DeviceTroubleshooting": "设备排查记录",
@@ -35,5 +40,26 @@
     "brokenCount": "损坏次数",
     "repairCount": "维修次数",
     "countFee": "维修总费用"
+  },
+  "MonthBill": {
+    "MonthBill": "户主账单查询",
+    "amount": "账单金额",
+    "time": "产生时间",
+    "paied": "是否已支付",
+    "type": "账单类目",
+    "householdId": "户主ID"
+  },
+  "ParkingSlot": {
+    "ParkingSlot": "停车位管理",
+    "id": "停车位编号",
+    "position": "位置编号",
+    "occupied": "是否已被占用",
+    "communityName": "隶属小区"
+  },
+  "UserRepair": {
+    "UserRepair": "住户设备报修查询",
+    "householdId": "住户ID",
+    "count": "报修次数",
+    "cost": "报修总金额"
   }
 }

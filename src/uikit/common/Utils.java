@@ -103,4 +103,10 @@ public class Utils {
             return null;
         }
     }
+
+    public static String parseString(String str){
+        if(str == null || str.isEmpty())
+            return null;
+        else return str;
+    }
 }

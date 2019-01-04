@@ -1,15 +1,10 @@
 import entity.*;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
-
 public class test {
     public static void main(String[] args) {
-        DeviceTroubleshootingManager deviceTroubleshootingManager = new DeviceTroubleshootingManager();
-        List<DeviceTroubleshooting> deviceTroubleshootings = deviceTroubleshootingManager.get();
-        System.out.println(deviceTroubleshootings.size());
+        FreeHouseManager freeHouseManager = new FreeHouseManager();
+        freeHouseManager.get();
+        freeHouseManager.get("小区1");
+        freeHouseManager.update(new FreeHouse(4,2,"小区1",100));
     }
 }

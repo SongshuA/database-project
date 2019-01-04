@@ -22,7 +22,7 @@ public class ParkingSlotManager {
         Object o = MysqlConnection.select(selectSql, rs->{
             List<ParkingSlot> parkingSlots = new ArrayList<>();
             while (rs.next()){
-                parkingSlots.add(new ParkingSlot(rs.getInt("ID"),rs.getString("position"),rs.getInt("occupied"),rs.getString("community_name")));
+                parkingSlots.add(new ParkingSlot(rs.getInt("parking_slot_ID"),rs.getString("position"),rs.getInt("occupied"),rs.getString("community_name")));
             }
             return parkingSlots;
         });

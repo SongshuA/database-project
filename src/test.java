@@ -8,6 +8,8 @@ import java.util.List;
 
 public class test {
     public static void main(String[] args) {
-
+        DeviceTroubleshootingManager deviceTroubleshootingManager = new DeviceTroubleshootingManager();
+        List<DeviceTroubleshooting> deviceTroubleshootings = deviceTroubleshootingManager.get();
+        System.out.println(deviceTroubleshootings.size());
     }
 }

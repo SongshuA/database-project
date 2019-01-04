@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import util.MysqlConnection;
+import util.DateCreate;
 
 public class BalanceManager{
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
@@ -23,20 +24,11 @@ public class BalanceManager{
     }
 
     public List<Balance> get(Integer beginYear, Integer beginMonth, Integer endYear, Integer endMonth){
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        format.setLenient(false);
-        Timestamp begin = null;
-        Timestamp end = null;
-        try{
-            begin = new Timestamp(format.parse(beginYear + "-" + beginMonth +"-1 00:00:00").getTime());
-            end = new Timestamp(format.parse(endYear + "-" + endMonth+"-30 00:00:00").getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        List<Timestamp> timestamps = DateCreate.create(beginYear,beginMonth,endYear,endMonth);
         String selectParkFee = "SELECT * FROM park_fee WHERE time between ? and ?";
         Object[] params = new Object[2];
-        params[0] = begin;
-        params[1] = end;
+        params[0] = timestamps.get(0);
+        params[1] = timestamps.get(1);
         Object o = MysqlConnection.select(selectParkFee, rs->{
             List<Balance> balances = new ArrayList<>();
             while (rs.next()){

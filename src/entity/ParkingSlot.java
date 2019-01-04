@@ -8,6 +8,8 @@ public class ParkingSlot implements Entity{
   private Integer occupied;
   private String communityName;
 
+  public ParkingSlot(){}
+
   public ParkingSlot(Integer id, String position,Integer occupied, String communityName) {
     this.id = id;
     this.position = position;

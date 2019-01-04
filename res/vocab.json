@@ -61,5 +61,12 @@
     "householdId": "住户ID",
     "count": "报修次数",
     "cost": "报修总金额"
+  },
+  "FreeHouse": {
+    "FreeHouse": "闲置房屋统计",
+    "house_ID": "房屋ID",
+    "unit_ID": "单元ID",
+    "community_name": "隶属小区",
+    "size": "房屋面积"
   }
 }

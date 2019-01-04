@@ -5,6 +5,8 @@ public class UserRepair implements Entity{
     private Integer count;
     private Integer cost;
 
+    public UserRepair(){}
+
     public Integer getHouseholdId() {
         return householdId;
     }

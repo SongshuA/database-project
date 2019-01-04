@@ -13,6 +13,8 @@ public class Complaint implements Entity{
   private String outcome;
   private Timestamp outcomeTime;
 
+  public Complaint(){}
+
   public Complaint(Integer id, String type, Timestamp time, String description, Integer householdId, String outcome, Timestamp outcomeTime) {
     this.id = id;
     this.type = type;

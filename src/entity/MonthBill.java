@@ -9,6 +9,8 @@ public class MonthBill implements Entity{
     private Boolean paied;
     private String type;
 
+    public MonthBill(){}
+
     public MonthBill(Integer householdId, Float amount, Timestamp time, boolean paied, String type) {
         this.householdId = householdId;
         this.amount = amount;

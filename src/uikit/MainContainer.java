@@ -13,5 +13,6 @@ public class MainContainer extends Container {
         this.addPanel(new MonthBillPanel());
         this.addPanel(new ParkingSlotPanel());
         this.addPanel(new UserRepairPanel());
+        this.addPanel(new FreeHousePanel());
     }
 }

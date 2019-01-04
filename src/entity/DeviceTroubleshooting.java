@@ -6,6 +6,8 @@ public class DeviceTroubleshooting implements Entity{
     private Integer repairCount;
     private double countFee;
 
+    public DeviceTroubleshooting(){}
+
     public int getDeviceId() {
         return deviceId;
     }

@@ -11,6 +11,8 @@ public class ParkingIncome implements Entity{
     private Integer paied;
     private String description;
 
+    public ParkingIncome(){}
+
     public String getPositon() {
         return positon;
     }

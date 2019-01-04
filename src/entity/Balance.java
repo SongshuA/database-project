@@ -7,6 +7,8 @@ public class Balance implements Entity{
     private String type;
     private Timestamp time;
 
+    public Balance(){}
+
     public Balance(Float amount, String type, Timestamp time) {
         this.amount = amount;
         this.type = type;

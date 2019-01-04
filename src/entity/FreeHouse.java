@@ -6,6 +6,8 @@ public class FreeHouse implements Entity{
     private String community_name;
     private Integer size;
 
+    public FreeHouse(){}
+
     public FreeHouse(Integer house_ID, Integer unit_ID, String community_name, Integer size) {
         this.house_ID = house_ID;
         this.unit_ID = unit_ID;

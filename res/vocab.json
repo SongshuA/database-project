@@ -1,9 +1,9 @@
 {
   "common": {
-    "yearStart": "开始年份",
-    "yearEnd": "结束年份",
-    "monthStart": "开始月份",
-    "monthEnd": "结束月份"
+    "beginYear": "开始年份",
+    "endYear": "结束年份",
+    "beginMonth": "开始月份",
+    "endMonth": "结束月份"
   },
   "Community": {
     "Community": "社区管理",
@@ -28,5 +28,12 @@
     "householdId": "户主ID",
     "outcome": "处理结果",
     "outcomeTime": "处理时间"
+  },
+  "DeviceTroubleshooting":{
+    "DeviceTroubleshooting": "设备排查记录",
+    "deviceId": "设备ID",
+    "brokenCount": "损坏次数",
+    "repairCount": "维修次数",
+    "countFee": "维修总费用"
   }
 }

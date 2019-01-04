@@ -7,5 +7,7 @@ public class MainContainer extends Container {
         super();
 
         this.addPanel(new CommunityPanel());
+        this.addPanel(new BalancePanel());
+        this.addPanel(new DeviceTroubleshootingPanel());
     }
 }

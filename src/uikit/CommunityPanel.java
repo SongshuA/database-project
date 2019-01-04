@@ -9,6 +9,6 @@ import java.util.ArrayList;
 
 public class CommunityPanel extends Panel {
     public CommunityPanel(){
-        super(Community.class, CommunityManager.getInstance(), null, false);
+        super(Community.class, CommunityManager.getInstance(), null, true);
     }
 }

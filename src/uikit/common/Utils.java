@@ -55,16 +55,18 @@ public class Utils {
 
         String name = classObj.getSimpleName();
         try{
-            if(vocab.has(name)){
+            if(vocab.has(name)) {
                 JSONObject sub = vocab.getJSONObject(name);
-                if(sub.has(fieldName))
+                if (sub.has(fieldName))
                     return sub.getString(fieldName);
 
-            }else if(vocab.has("common")){
-                JSONObject sub = vocab.getJSONObject("common");
-                if(sub.has(fieldName))
-                    return sub.getString(fieldName);
+                else if (vocab.has("common")) {
+                    sub = vocab.getJSONObject("common");
+                    if (sub.has(fieldName))
+                        return sub.getString(fieldName);
+                }
             }
+
         }catch (JSONException e){
             return fieldName;
         }
@@ -89,6 +91,14 @@ public class Utils {
     public static Float parseFloat(String str){
         try{
             return Float.parseFloat(str);
+        }catch (NumberFormatException e){
+            return null;
+        }
+    }
+
+    public static Integer parseInt(String str){
+        try{
+            return Integer.parseInt(str);
         }catch (NumberFormatException e){
             return null;
         }

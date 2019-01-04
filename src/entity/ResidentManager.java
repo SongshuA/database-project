@@ -23,7 +23,7 @@ public class ResidentManager implements EntityManager<Resident> {
         Object o = MysqlConnection.select(selectSql, rs->{
             List<Resident> residents = new ArrayList<>();
             while (rs.next()){
-                residents.add(new Resident(rs.getInt("resident_ID"),rs.getString("name"),rs.getString("contact"),rs.getInt("household_ID")));
+                residents.add(new Resident(rs.getInt("resident_ID"),rs.getString("name"),rs.getString("contact"),rs.getInt("house_ID")));
             }
             return residents;
         });
@@ -32,11 +32,11 @@ public class ResidentManager implements EntityManager<Resident> {
 
     @Override
     public boolean insert(Resident entity) {
-        String insertSql = "INSERT INTO resident (name, contact,household_ID) values(?,?,?)";
+        String insertSql = "INSERT INTO resident (name, contact, house_ID) values(?,?,?)";
         Object[] params = new Object[3];
         params[0] = entity.getName();
         params[1] = entity.getContact();
-        params[2] = entity.getHouseholdId();
+        params[2] = entity.getHouseId();
         MysqlConnection.executeUpdate(insertSql,params);
         return true;
     }
@@ -46,7 +46,7 @@ public class ResidentManager implements EntityManager<Resident> {
         Integer residentId = entity.getResidentId();
         String name = entity.getName();
         String contact = entity.getContact();
-        Integer householdId = entity.getHouseholdId();
+        Integer householdId = entity.getHouseId();
         String updateSql = "UPDATE resident set ";
         if(name !=null) updateSql += " name='" + name + "' ,";
         if(contact != null) updateSql += " contact='" + contact + "' ,";

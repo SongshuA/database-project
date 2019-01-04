@@ -40,7 +40,7 @@ public class ParkingSlotManager implements EntityManager<ParkingSlot>{
         int length1 = parkingSlots1.size();
         for(int i = 0;i<length;i++){
             ParkingSlot parkingSlot = parkingSlots.get(i);
-            for(int j = 0;j<length;j++){
+            for(int j = 0;j<length1;j++){
                 ParkingSlot parkingSlot1 = parkingSlots1.get(j);
                 if(parkingSlot.getId() == parkingSlot1.getId()){
                     parkingSlot.setAmount(parkingSlot1.getAmount());

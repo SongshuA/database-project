@@ -14,6 +14,8 @@ public class Repair implements Entity {
     private Integer householdId;
     private Integer repairFeeId;
 
+    public Repair(){}
+
     public Repair(Integer preairId, String operator, Integer device_ID, Timestamp time, Timestamp schedule, String description, String outcome, Timestamp outcomeTime, Integer householdId, Integer repairFeeId) {
         this.preairId = preairId;
         this.operator = operator;

@@ -26,7 +26,7 @@ public class RepairFeeManager implements EntityManager<RepairFee>{
         Object b = MysqlConnection.select(selectSql, rs->{
             List<RepairFee> repairFees = new ArrayList<>();
             while (rs.next()){
-                repairFees.add(new RepairFee(rs.getInt("repair_fee_ID"),rs.getDouble("amount"),rs.getTimestamp("time"),rs.getInt("paied"),rs.getString(":description")));
+                repairFees.add(new RepairFee(rs.getInt("repair_fee_ID"),rs.getDouble("amount"),rs.getTimestamp("time"),rs.getInt("paied"),rs.getString("description")));
             }
             return repairFees;
         });
@@ -41,7 +41,7 @@ public class RepairFeeManager implements EntityManager<RepairFee>{
         Object b = MysqlConnection.select(selectSql, rs->{
             List<RepairFee> repairFees = new ArrayList<>();
             while (rs.next()){
-                repairFees.add(new RepairFee(rs.getInt("repair_fee_ID"),rs.getDouble("amount"),rs.getTimestamp("time"),rs.getInt("paied"),rs.getString(":description")));
+                repairFees.add(new RepairFee(rs.getInt("repair_fee_ID"),rs.getDouble("amount"),rs.getTimestamp("time"),rs.getInt("paied"),rs.getString("description")));
             }
             return repairFees;
         },params);

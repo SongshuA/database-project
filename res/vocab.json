@@ -17,7 +17,8 @@
     "Balance": "集团收支明细",
     "amount": "金额",
     "type": "类型",
-    "time": "产生时间"
+    "time": "产生时间",
+    "description": "描述"
   },
   "Complaint": {
     "Complaint": "住户投诉明细",
@@ -35,7 +36,7 @@
     "household_ID": "住户ID"
   },
   "DeviceTroubleshooting":{
-    "DeviceTroubleshooting": "设备维修汇总",
+    "DeviceTroubleshooting": "设备排查汇总",
     "deviceId": "设备ID",
     "brokenCount": "损坏次数",
     "repairCount": "报修次数",
@@ -54,7 +55,9 @@
     "id": "停车位编号",
     "position": "位置编号",
     "occupied": "是否已被占用",
-    "communityName": "隶属小区"
+    "communityName": "隶属小区",
+    "type": "类型",
+    "amount": "总停车收入"
   },
   "UserRepair": {
     "UserRepair": "住户报修汇总",
@@ -68,5 +71,42 @@
     "unit_ID": "单元ID",
     "community_name": "隶属小区",
     "size": "房屋面积"
+  },
+  "Troubleshooting": {
+    "Troubleshooting": "设备排查明细",
+    "troubleshootingId": "编号",
+    "time": "排查时间",
+    "operator": "操作员",
+    "description": "处理结果",
+    "repairFeeId": "费用记录编号",
+    "deviceId": "设备ID"
+  },
+  "RepairFee": {
+    "RepairFee": "设备维修明细",
+    "repairFeeId": "编号",
+    "amount": "维修金额",
+    "time": "维修时间",
+    "paied": "是否已付款",
+    "description": "描述"
+  },
+  "Repair": {
+    "Repair": "设备报修明细",
+    "preairId": "编号",
+    "operator": "操作员",
+    "device_ID": "设备ID",
+    "time": "报修时间",
+    "schedule": "安排时间",
+    "description": "描述",
+    "outcome": "处理结果",
+    "outcomeTime": "处理时间",
+    "householdId": "住户编号",
+    "repairFeeId": "修理费ID"
+  },
+  "Resident": {
+    "Resident": "住户信息管理",
+    "residentId": "住户编号",
+    "name": "姓名",
+    "contact": "联系方式",
+    "houseId": "房屋ID"
   }
 }

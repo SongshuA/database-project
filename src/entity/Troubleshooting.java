@@ -12,6 +12,8 @@ public class Troubleshooting implements Entity {
   private Integer repairFeeId;
   private Integer deviceId;
 
+  public Troubleshooting(){}
+
   public Troubleshooting(Integer troubleshootingId, Timestamp time, String operator, String description, Integer repairFeeId, Integer deviceId) {
     this.troubleshootingId = troubleshootingId;
     this.time = time;

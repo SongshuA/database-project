@@ -25,24 +25,21 @@ public class CommunityManager implements EntityManager<Community>{
     public List<Community> get() {
         //在这里利用JDBC获取内容
         String querySql = "SELECT * FROM community";
-        List<Community> result = new ArrayList<>();
-        try{
-            ResultSet rs = MysqlConnection.select(querySql);
+        Object o = MysqlConnection.select(querySql, rs->{
+            List<Community> result = new ArrayList<>();
             while (rs.next()){
-                Community community = new Community(rs.getString("name"),rs.getFloat("property_fee"), rs.getFloat("rent_fee"),rs.getFloat("purchase_fee"));
+                Community community = new Community(rs.getString("community_name"),rs.getFloat("property_fee"), rs.getFloat("rent_fee"),rs.getFloat("purchase_fee"));
                 result.add(community);
             }
-            return result;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
+           return result;
+        });
+        return (List<Community>)o;
     }
 
     @Override
     public boolean insert(Community entity) {
         //插入对象 entity
-        String insertSql = "INSERT INTO community (name, property_fee, rent_fee, purchase_fee) values (?, ?, ?, ?)";
+        String insertSql = "INSERT INTO community (community_name, property_fee, rent_fee, purchase_fee) values (?, ?, ?, ?)";
         Object[] params = new Object[4];
         params[0] = entity.getName();
         params[1] = entity.getPropertyFee();
@@ -64,7 +61,7 @@ public class CommunityManager implements EntityManager<Community>{
         if (null != property_fee) updateSql += " property_fee='"+ property_fee +"' ,";
         if (null != rent_fee) updateSql += " rent_fee='" + rent_fee + "' ,";
         if (null != purchase_fee) updateSql += " purchase_fee='" + purchase_fee + "' ,";
-        updateSql =updateSql.substring(0, updateSql.length()-1) + "WHERE name =" + "'"+name+"'";
+        updateSql =updateSql.substring(0, updateSql.length()-1) + "WHERE community_name =" + "'"+name+"'";
         MysqlConnection.executeUpdate(updateSql);
         return true;
     }

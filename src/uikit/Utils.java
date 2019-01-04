@@ -1,6 +1,7 @@
 package uikit;
 
 import entity.Entity;
+import org.json.JSONException;
 import org.json.JSONObject;
 import sun.applet.Main;
 
@@ -52,9 +53,14 @@ public class Utils {
 
         String name = classObj.getSimpleName();
         if(vocab.has(name)){
-            JSONObject sub = vocab.getJSONObject(name);
-            if(sub.has(fieldName))
-                return sub.getString(fieldName);
+            JSONObject sub = null;
+            try {
+                sub = vocab.getJSONObject(name);
+                if(sub.has(fieldName))
+                    return sub.getString(fieldName);
+            } catch (JSONException e) {
+                return fieldName;
+            }
         }
         return fieldName;
     }
@@ -67,6 +73,10 @@ public class Utils {
         while(((s = br.readLine()) != null))
             result.append(s);
         br.close();
-        return new JSONObject(result.toString());
+        try {
+            return new JSONObject(result.toString());
+        } catch (JSONException e) {
+            return null;
+        }
     }
 }

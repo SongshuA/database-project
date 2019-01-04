@@ -1,18 +1,23 @@
 import entity.*;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class test {
     public static void main(String[] args) {
-        Timestamp timestamp = new Timestamp(new Date().getTime());
-        Complaint complaint = new Complaint(1, "王锴", timestamp, "666",4,null,null,null);
-        ComplaintManager complaintManager = new ComplaintManager();
-        complaintManager.insert(complaint);
-//        Unit unit = new Unit(1,2,"王锴");
-//        UnitManager unitManager = new UnitManager();
-//        unitManager.insert(unit);
-
+        MonthBillManager monthBillManager = new MonthBillManager();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        format.setLenient(false);
+        try{
+            Timestamp begin = new Timestamp(format.parse("2019-1-1 12:12:12").getTime());
+            Timestamp end = new Timestamp(format.parse("2019-1-5 10:10:00").getTime());
+            List<MonthBill> monthBills = monthBillManager.get(4,begin, end);
+            System.out.println(monthBills.size());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

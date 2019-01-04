@@ -3,23 +3,23 @@ package entity;
 
 public class ParkingSlot implements Entity{
 
-  private long id;
+  private Integer id;
   private String position;
-  private long occupied;
+  private Integer occupied;
   private String communityName;
 
-  public ParkingSlot(long id, String position, long occupied, String communityName) {
+  public ParkingSlot(Integer id, String position,Integer occupied, String communityName) {
     this.id = id;
     this.position = position;
     this.occupied = occupied;
     this.communityName = communityName;
   }
 
-  public long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -33,11 +33,11 @@ public class ParkingSlot implements Entity{
   }
 
 
-  public long getOccupied() {
+  public Integer getOccupied() {
     return occupied;
   }
 
-  public void setOccupied(long occupied) {
+  public void setOccupied(Integer occupied) {
     this.occupied = occupied;
   }
 

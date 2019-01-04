@@ -7,12 +7,12 @@ public class Complaint implements Entity{
 
   private Integer id;
   private String type;
-  private java.sql.Timestamp time;
+  private Timestamp time;
   private String description;
   private Integer householdId;
-  private java.sql.Timestamp schedule;
+  private Timestamp schedule;
   private String outcome;
-  private java.sql.Timestamp outcomeTime;
+  private Timestamp outcomeTime;
 
   public Complaint(Integer id, String type, Timestamp time, String description, Integer householdId, Timestamp schedule, String outcome, Timestamp outcomeTime) {
     this.id = id;
@@ -43,11 +43,11 @@ public class Complaint implements Entity{
   }
 
 
-  public java.sql.Timestamp getTime() {
+  public Timestamp getTime() {
     return time;
   }
 
-  public void setTime(java.sql.Timestamp time) {
+  public void setTime(Timestamp time) {
     this.time = time;
   }
 
@@ -70,11 +70,11 @@ public class Complaint implements Entity{
   }
 
 
-  public java.sql.Timestamp getSchedule() {
+  public Timestamp getSchedule() {
     return schedule;
   }
 
-  public void setSchedule(java.sql.Timestamp schedule) {
+  public void setSchedule(Timestamp schedule) {
     this.schedule = schedule;
   }
 
@@ -88,11 +88,11 @@ public class Complaint implements Entity{
   }
 
 
-  public java.sql.Timestamp getOutcomeTime() {
+  public Timestamp getOutcomeTime() {
     return outcomeTime;
   }
 
-  public void setOutcomeTime(java.sql.Timestamp outcomeTime) {
+  public void setOutcomeTime(Timestamp outcomeTime) {
     this.outcomeTime = outcomeTime;
   }
 

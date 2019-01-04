@@ -1,6 +1,9 @@
 package util;
+import entity.Entity;
+
 import java.sql.*;
 import java.sql.DriverManager;
+import java.util.List;
 
 public class MysqlConnection {
     private static String url = "jdbc:mysql://localhost:3306/dbpj?characterEncoding=utf-8";
@@ -71,21 +74,24 @@ public class MysqlConnection {
         return -1;
     }
 
-    public static ResultSet select(String sql, Object... params){
-        Connection conn = null;
-        PreparedStatement preStmt = null;
-        ResultSet rs = null;
-        try{
-            conn = getConnection();
-            preStmt = conn.prepareStatement(sql);
-            setParams(preStmt, params);
-            rs = preStmt.executeQuery();
-            preStmt.close();
-            conn.close();
-            return rs;
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public static Object select(String sql, ResultSetHandler handler, Object... params){
+                Connection conn = null;
+                PreparedStatement preStmt = null;
+                ResultSet rs = null;
+                try{
+                    conn = getConnection();
+                    preStmt = conn.prepareStatement(sql);
+                    setParams(preStmt, params);
+                    rs = preStmt.executeQuery();
+                    Object entityList = handler.handle(rs);
+                    preStmt.close();
+                    conn.close();
+                    return entityList;
+                } catch (SQLException e) {
+                    e.printStackTrace();
         }
         return null;
     }
+
+
 }

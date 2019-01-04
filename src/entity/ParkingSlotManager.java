@@ -2,9 +2,11 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import util.MysqlConnection;
 
-public class ParkingSlotManager {
+public class ParkingSlotManager implements EntityManager<ParkingSlot>{
     /* 单例模式，后续的实体管理器请按照这个格式设计 */
     public ParkingSlotManager(){
     }
@@ -49,5 +51,43 @@ public class ParkingSlotManager {
         }
 
         return parkingSlots;
+    }
+
+    @Override
+    public boolean insert(ParkingSlot entity) {
+        String insertSql = "INSERT INTO parking_slot (position, occupied,community_name,type) values(?,?,?,?)";
+        Object[] params = new Object[4];
+        params[0] = entity.getPosition();
+        params[1] = entity.getOccupied();
+        params[2] = entity.getCommunityName();
+        params[3] = entity.getType();
+        MysqlConnection.executeUpdate(insertSql, params);
+        return true;
+    }
+
+    @Override
+    public boolean update(ParkingSlot entity) {
+        Integer parkingSlotId = entity.getId();
+        String position = entity.getPosition();
+        Integer occupied = entity.getOccupied();
+        String communityName = entity.getCommunityName();
+        String type = entity.getType();
+        String updateSql = "UPDATE parking_slot set ";
+        if(position != null) updateSql += " position='" + position + "' ,";
+        if(occupied != null) updateSql += " occupied='" + occupied +"' ,";
+        if(communityName != null) updateSql += " community_name='" + communityName +"' ,";
+        if(type != null) updateSql+= " type='" + type + "' ,";
+        updateSql = updateSql.substring(0, updateSql.length()- 1) + "WHERE parking_slot_ID='" + parkingSlotId + "'";
+        MysqlConnection.executeUpdate(updateSql);
+        return true;
+    }
+
+    @Override
+    public boolean delete(ParkingSlot entity) {
+        String deleteSql = "DELETE FROM parking_slot WHERE parking_slot_ID=?";
+        Object[] params = new Object[1];
+        params[0] = entity.getId();
+        MysqlConnection.executeUpdate(deleteSql, params);
+        return true;
     }
 }

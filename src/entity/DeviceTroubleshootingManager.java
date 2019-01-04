@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import util.DateCreate;
 import util.MysqlConnection;
 
 public class DeviceTroubleshootingManager implements EntityManager<DeviceTroubleshooting>{
@@ -37,20 +39,11 @@ public class DeviceTroubleshootingManager implements EntityManager<DeviceTrouble
     }
 
     public List<DeviceTroubleshooting> get(Integer beginYear, Integer beginMonth, Integer endYear, Integer endMonth){
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        format.setLenient(false);
-        Timestamp begin = null;
-        Timestamp end = null;
-        try{
-            begin = new Timestamp(format.parse(beginYear + "-" + beginMonth +"-1 00:00:00").getTime());
-            end = new Timestamp(format.parse(endYear + "-" + endMonth+"-30 00:00:00").getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        List<Timestamp> timestamps = DateCreate.create(beginYear,beginMonth,endYear,endMonth);
         String selectRepairFeeSql = "SELECT device_ID, count(*) as count, count(amount) as amounts FROM repair_fee natural join troubleshooting natural join device WHERE time between ? and ? group by device_ID";
         Object[] params = new Object[2];
-        params[0] = begin;
-        params[1] = end;
+        params[0] = timestamps.get(0);
+        params[1] = timestamps.get(1);
         Object o = MysqlConnection.select(selectRepairFeeSql, rs -> {
            List<DeviceTroubleshooting> deviceTroubleshootings = new ArrayList<>();
            while (rs.next()){
@@ -92,8 +85,7 @@ public class DeviceTroubleshootingManager implements EntityManager<DeviceTrouble
             }
             return deviceTroubleshootings;
         });
-        List<DeviceTroubleshooting> deviceTroubleshootings = new ArrayList<>();
-        deviceTroubleshootings = (List<DeviceTroubleshooting>)o;
+        List<DeviceTroubleshooting> deviceTroubleshootings = (List<DeviceTroubleshooting>)o;
         int length = deviceTroubleshootings.size();
         String selectRepairSql = "SELECT device_ID, count(*) as count FROM repair natural join device";
         Object b = MysqlConnection.select(selectRepairSql, rs -> {

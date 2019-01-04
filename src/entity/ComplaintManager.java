@@ -1,4 +1,5 @@
 package entity;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -6,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.DateCreate;
 import util.MysqlConnection;
 
 public class ComplaintManager implements EntityManager<Complaint>{
@@ -34,20 +36,11 @@ public class ComplaintManager implements EntityManager<Complaint>{
     }
 
     public List<Complaint> get(Integer beginYear, Integer beginMonth, Integer endYear, Integer endMonth) {
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        format.setLenient(false);
-        Timestamp begin = null;
-        Timestamp end = null;
-        try{
-            begin = new Timestamp(format.parse(beginYear + "-" + beginMonth +"-1 00:00:00").getTime());
-            end = new Timestamp(format.parse(endYear + "-" + endMonth+"-30 00:00:00").getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        List<Timestamp> timestamps = DateCreate.create(beginYear,beginMonth,endYear,endMonth);
         String selectSql = "SELECT * FROM complaint WHERE time between ? and ?";
         Object[] params = new Object[2];
-        params[0] = begin;
-        params[1] = end;
+        params[0] = timestamps.get(0);
+        params[1] = timestamps.get(1);
         Object o = MysqlConnection.select(selectSql, rs -> {
             List<Complaint> complaints = new ArrayList<>();
             while (rs.next()) {
@@ -59,29 +52,23 @@ public class ComplaintManager implements EntityManager<Complaint>{
     }
 
     public List<Complaint> get(Integer beginYear, Integer beginMonth, Integer endYear, Integer endMonth, String community_name, Integer unit_ID,Integer house_ID,Integer household_ID,String type){
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        format.setLenient(false);
-        Timestamp begin = null;
-        Timestamp end = null;
-        try{
-            begin = new Timestamp(format.parse(beginYear + "-" + beginMonth +"-1 00:00:00").getTime());
-            end = new Timestamp(format.parse(endYear + "-" + endMonth+"-30 00:00:00").getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String selectSql = "SELECT * FROM complaint natural join household natural join house natural join community WHERE time between '" + begin + "' and '" + end + "' ";
+        List<Timestamp> timestamps = DateCreate.create(beginYear,beginMonth,endYear,endMonth);
+        String selectSql = "SELECT * FROM complaint natural join household natural join house natural join community WHERE time between ? and ? ";
         if(null != community_name) selectSql += " and community_name='" + community_name + "'";
         if(null != unit_ID) selectSql += " and unit_ID='" + unit_ID + "'";
         if(null != house_ID) selectSql += " and house_ID='" + house_ID + "'";
         if(null != household_ID) selectSql += " and household_ID='" + household_ID + "'";
         if(null != type) selectSql += " and type='" + type + "'";
+        Object[] params = new Object[2];
+        params[0] = timestamps.get(0);
+        params[1] = timestamps.get(1);
         Object o = MysqlConnection.select(selectSql, rs -> {
             List<Complaint> complaints = new ArrayList<>();
             while (rs.next()){
                 complaints.add(new Complaint(rs.getInt("complaint_ID"), rs.getString("type"), rs.getTimestamp("time"), rs.getString("description"), rs.getInt("household_id"), rs.getString("outcome"), rs.getTimestamp("outcome_time")));
             }
             return complaints;
-        });
+        },params);
         return (List<Complaint>)o;
      }
 

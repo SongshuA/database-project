@@ -1,11 +1,10 @@
 package entity;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import util.DateCreate;
 import util.MysqlConnection;
 
 public class UserRepairManager implements EntityManager<UserRepair>{
@@ -37,20 +36,11 @@ public class UserRepairManager implements EntityManager<UserRepair>{
     }
 
     public List<UserRepair> get(Integer beginYear, Integer beginMonth, Integer endYear, Integer endMonth){
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        format.setLenient(false);
-        Timestamp begin = null;
-        Timestamp end = null;
-        try{
-            begin = new Timestamp(format.parse(beginYear + "-" + beginMonth +"-1 00:00:00").getTime());
-            end = new Timestamp(format.parse(endYear + "-" + endMonth+"-30 00:00:00").getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        List<Timestamp> timestamps = DateCreate.create(beginYear,beginMonth,endYear,endMonth);
         String selectSql = "SELECT household_ID, count(*) as count, count(amount) as amounts FROM household natural join repair natural join repair_fee WHERE time between ? and ? group by household_ID";
         Object[] params = new Object[2];
-        params[0] = begin;
-        params[1] = end;
+        params[0] = timestamps.get(0);
+        params[1] = timestamps.get(1);
         Object o = MysqlConnection.select(selectSql, rs->{
            List<UserRepair> userRepairs = new ArrayList<>();
            while (rs.next()){

@@ -1522,14 +1522,14 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="355" parent="244" name="house_ID">
+    <column id="355" parent="244" name="household_ID">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="356" parent="244" name="house_ID">
-      <ColNames>house_ID</ColNames>
+    <index id="356" parent="244" name="household_in_resident">
+      <ColNames>household_ID</ColNames>
       <Type>btree</Type>
     </index>
     <key id="357" parent="244" name="PRIMARY">
@@ -1537,85 +1537,91 @@
       <ColNames>resident_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="358" parent="245" name="temporary_slot_ID">
+    <foreign-key id="358" parent="244" name="household_in_resident">
+      <ColNames>household_ID</ColNames>
+      <RefSchemaName>dbpj</RefSchemaName>
+      <RefTableName>household</RefTableName>
+      <RefColNames>household_ID</RefColNames>
+    </foreign-key>
+    <column id="359" parent="245" name="temporary_slot_ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="359" parent="245" name="card">
+    <column id="360" parent="245" name="card">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="360" parent="245" name="PRIMARY">
+    <key id="361" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>temporary_slot_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="361" parent="245" name="parking_in_temporary">
+    <foreign-key id="362" parent="245" name="parking_in_temporary">
       <ColNames>temporary_slot_ID</ColNames>
       <RefSchemaName>dbpj</RefSchemaName>
       <RefTableName>parking_slot</RefTableName>
       <RefColNames>parking_slot_ID</RefColNames>
     </foreign-key>
-    <column id="362" parent="246" name="troubleshooting_ID">
+    <column id="363" parent="246" name="troubleshooting_ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="363" parent="246" name="time">
+    <column id="364" parent="246" name="time">
       <Position>2</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="364" parent="246" name="operator">
+    <column id="365" parent="246" name="operator">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="365" parent="246" name="description">
+    <column id="366" parent="246" name="description">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="366" parent="246" name="repair_fee_ID">
+    <column id="367" parent="246" name="repair_fee_ID">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="367" parent="246" name="device_ID">
+    <column id="368" parent="246" name="device_ID">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="368" parent="246" name="repair_fee_in_trouble">
+    <index id="369" parent="246" name="repair_fee_in_trouble">
       <ColNames>repair_fee_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="369" parent="246" name="device_in_trouble">
+    <index id="370" parent="246" name="device_in_trouble">
       <ColNames>device_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="370" parent="246" name="PRIMARY">
+    <key id="371" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>troubleshooting_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="371" parent="246" name="repair_fee_in_trouble">
+    <foreign-key id="372" parent="246" name="repair_fee_in_trouble">
       <ColNames>repair_fee_ID</ColNames>
       <RefSchemaName>dbpj</RefSchemaName>
       <RefTableName>repair_fee</RefTableName>
       <RefColNames>repair_fee_ID</RefColNames>
     </foreign-key>
-    <foreign-key id="372" parent="246" name="device_in_trouble">
+    <foreign-key id="373" parent="246" name="device_in_trouble">
       <ColNames>device_ID</ColNames>
       <RefSchemaName>dbpj</RefSchemaName>
       <RefTableName>device</RefTableName>

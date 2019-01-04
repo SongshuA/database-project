@@ -107,6 +107,6 @@
     "residentId": "住户编号",
     "name": "姓名",
     "contact": "联系方式",
-    "houseId": "房屋ID"
+    "householdId": "户主ID"
   }
 }

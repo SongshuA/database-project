@@ -1,14 +1,12 @@
 package util;
-import entity.Entity;
 
 import java.sql.*;
 import java.sql.DriverManager;
-import java.util.List;
 
 public class MysqlConnection {
     private static String url = "jdbc:mysql://localhost:3306/dbpj?characterEncoding=utf-8";
     private static String user = "root";
-    private static String password = "6366222";
+    private static String password = "971219";
 
     private static Connection getConnection() {
         try {
@@ -51,12 +49,12 @@ public class MysqlConnection {
 
 
     //执行 SQL，返回影响的行数 异常处理
-    public static int executeUpdate(String sql){
+    public static int executeUpdate(String sql) throws SQLException {
         return executeUpdate(sql, new Object[] {});
     }
 
     //带参数执行SQL，返回影响的行数 异常处理
-    public static int executeUpdate(String sql, Object... params) {
+    public static int executeUpdate(String sql, Object... params) throws SQLException{
         Connection conn = null;
         PreparedStatement preStmt = null;
         try {
@@ -65,13 +63,13 @@ public class MysqlConnection {
             preStmt = conn.prepareStatement(sql);
             setParams(preStmt, params);
             int result = preStmt.executeUpdate();
-            preStmt.close();
-            conn.close();
             return result; //执行SQL操作
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }finally {
+            if (preStmt != null)
+                preStmt.close();
+            if (conn != null)
+                conn.close();
         }
-        return -1;
     }
 
     public static Object select(String sql, ResultSetHandler handler, Object... params){

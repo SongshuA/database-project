@@ -4,15 +4,15 @@ public class Resident implements Entity{
     private Integer residentId;
     private String name;
     private String contact;
-    private Integer houseId;
+    private Integer householdId;
 
     public Resident(){}
 
-    public Resident(Integer residentId, String name, String contact, Integer houseId) {
+    public Resident(Integer residentId, String name, String contact, Integer householdId) {
         this.residentId = residentId;
         this.name = name;
         this.contact = contact;
-        this.houseId = houseId;
+        this.householdId = householdId;
     }
 
     public Integer getResidentId() {
@@ -39,11 +39,11 @@ public class Resident implements Entity{
         this.contact = contact;
     }
 
-    public Integer getHouseId() {
-        return houseId;
+    public Integer getHouseholdId() {
+        return householdId;
     }
 
-    public void setHouseId(Integer houseId) {
-        this.houseId = houseId;
+    public void setHouseholdId(Integer householdId) {
+        this.householdId = householdId;
     }
 }

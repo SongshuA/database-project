@@ -50,40 +50,52 @@ public class RepairFeeManager implements EntityManager<RepairFee>{
 
     @Override
     public boolean insert(RepairFee entity) {
-        String insertSql = "INSERT INTO repair_fee_ID (amount, time, paied, description) values(?,?,?,?)";
-        Object[] params = new Object[4];
-        params[0] = entity.getAmount();
-        params[1] = entity.getTime();
-        params[2] = entity.getPaied();
-        params[3] = entity.getDescription();
-        MysqlConnection.executeUpdate(insertSql,params);
-        return true;
+        try {
+            String insertSql = "INSERT INTO repair_fee_ID (amount, time, paied, description) values(?,?,?,?)";
+            Object[] params = new Object[4];
+            params[0] = entity.getAmount();
+            params[1] = entity.getTime();
+            params[2] = entity.getPaied();
+            params[3] = entity.getDescription();
+            MysqlConnection.executeUpdate(insertSql, params);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public boolean update(RepairFee entity) {
-        Integer repairFeeId = entity.getRepairFeeId();
-        Double amount  = entity.getAmount();
-        Timestamp time = entity.getTime();
-        Integer paied = entity.getPaied();
-        String description = entity.getDescription();
-        String updateSql = "UPDATE repair_fee set";
-        if(repairFeeId != null) updateSql += "repair_fee_ID='" + repairFeeId +"' ,";
-        if(amount != null)  updateSql += " amount='" + amount + "' ,";
-        if(time !=null)  updateSql +=" time='" + time + "' ,";
-        if(paied !=null) updateSql +=" paied='" + paied + "' ,";
-        if(description != null) updateSql += " description='" + description + "' ,";
-        updateSql = updateSql.substring(0, updateSql.length() - 1) + "WHERE repair_fee_ID='" + repairFeeId + "'";
-        MysqlConnection.executeUpdate(updateSql);
-        return true;
+        try {
+            Integer repairFeeId = entity.getRepairFeeId();
+            Double amount = entity.getAmount();
+            Timestamp time = entity.getTime();
+            Integer paied = entity.getPaied();
+            String description = entity.getDescription();
+            String updateSql = "UPDATE repair_fee set";
+            if (repairFeeId != null) updateSql += "repair_fee_ID='" + repairFeeId + "' ,";
+            if (amount != null) updateSql += " amount='" + amount + "' ,";
+            if (time != null) updateSql += " time='" + time + "' ,";
+            if (paied != null) updateSql += " paied='" + paied + "' ,";
+            if (description != null) updateSql += " description='" + description + "' ,";
+            updateSql = updateSql.substring(0, updateSql.length() - 1) + "WHERE repair_fee_ID='" + repairFeeId + "'";
+            MysqlConnection.executeUpdate(updateSql);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public boolean delete(RepairFee entity) {
+        try{
         String deleteSql = "DELETE FROM repair_fee WHERE repair_fee_ID=?";
         Object[] params = new Object[1];
         params[0] = entity.getRepairFeeId();
         MysqlConnection.executeUpdate(deleteSql,params);
         return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

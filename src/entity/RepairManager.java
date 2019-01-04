@@ -50,54 +50,66 @@ public class RepairManager implements EntityManager<Repair> {
 
     @Override
     public boolean insert(Repair entity) {
-        String insertSql ="INSERT INTO repair (operator, device_ID, time, schedule, description, outcome,outcome_time, household_ID, repair_fee_ID) values(?,?,?,?,?,?,?,?,?)";
-        Object[] params = new Object[9];
-        params[0] = entity.getOperator();
-        params[1] = entity.getDevice_ID();
-        params[2] = entity.getTime();
-        params[3] = entity.getSchedule();
-        params[4] = entity.getDescription();
-        params[5] = entity.getOutcome();
-        params[6] = entity.getOutcomeTime();
-        params[7] = entity.getHouseholdId();
-        params[8] = entity.getRepairFeeId();
-        MysqlConnection.executeUpdate(insertSql, params);
-        return true;
+        try {
+            String insertSql = "INSERT INTO repair (operator, device_ID, time, schedule, description, outcome,outcome_time, household_ID, repair_fee_ID) values(?,?,?,?,?,?,?,?,?)";
+            Object[] params = new Object[9];
+            params[0] = entity.getOperator();
+            params[1] = entity.getDevice_ID();
+            params[2] = entity.getTime();
+            params[3] = entity.getSchedule();
+            params[4] = entity.getDescription();
+            params[5] = entity.getOutcome();
+            params[6] = entity.getOutcomeTime();
+            params[7] = entity.getHouseholdId();
+            params[8] = entity.getRepairFeeId();
+            MysqlConnection.executeUpdate(insertSql, params);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public boolean update(Repair entity) {
-        Integer repairId = entity.getPreairId();
-        String operator = entity.getOperator();
-        Integer deviceId = entity.getDevice_ID();
-        Timestamp time = entity.getTime();
-        Timestamp schedule= entity.getSchedule();
-        String description = entity.getDescription();
-        String outcome = entity.getOutcome();
-        Timestamp outcomeTime = entity.getOutcomeTime();
-        Integer householdId =entity.getHouseholdId();
-        Integer repairFeeId = entity.getRepairFeeId();
-        String updateSql = "UPDATE reapir set ";
-        if(operator != null) updateSql+= " operator='" + operator + "' ,";
-        if(deviceId !=null) updateSql +=" device_ID='" + deviceId + "' ,";
-        if(time != null) updateSql += " time='" + time + "', ";
-        if(schedule != null) updateSql += " schedule='"+ schedule + "' ,";
-        if(description != null) updateSql+= " description='" + description + "' ,";
-        if(outcome != null) updateSql += " outcome='" + outcome +"' ,";
-        if(outcomeTime != null) updateSql += " outcome_time='" + outcomeTime + "' ,";
-        if(householdId != null) updateSql += " household_ID='" + householdId + "' ,";
-        if(repairFeeId !=null) updateSql+=" repair_fee_ID='" + repairFeeId +"' ,";
-        updateSql = updateSql.substring(0, updateSql.length() -1) + "WHERE repair_ID='" + repairId + "'";
-        MysqlConnection.executeUpdate(updateSql);
-        return true;
+        try {
+            Integer repairId = entity.getPreairId();
+            String operator = entity.getOperator();
+            Integer deviceId = entity.getDevice_ID();
+            Timestamp time = entity.getTime();
+            Timestamp schedule = entity.getSchedule();
+            String description = entity.getDescription();
+            String outcome = entity.getOutcome();
+            Timestamp outcomeTime = entity.getOutcomeTime();
+            Integer householdId = entity.getHouseholdId();
+            Integer repairFeeId = entity.getRepairFeeId();
+            String updateSql = "UPDATE reapir set ";
+            if (operator != null) updateSql += " operator='" + operator + "' ,";
+            if (deviceId != null) updateSql += " device_ID='" + deviceId + "' ,";
+            if (time != null) updateSql += " time='" + time + "', ";
+            if (schedule != null) updateSql += " schedule='" + schedule + "' ,";
+            if (description != null) updateSql += " description='" + description + "' ,";
+            if (outcome != null) updateSql += " outcome='" + outcome + "' ,";
+            if (outcomeTime != null) updateSql += " outcome_time='" + outcomeTime + "' ,";
+            if (householdId != null) updateSql += " household_ID='" + householdId + "' ,";
+            if (repairFeeId != null) updateSql += " repair_fee_ID='" + repairFeeId + "' ,";
+            updateSql = updateSql.substring(0, updateSql.length() - 1) + "WHERE repair_ID='" + repairId + "'";
+            MysqlConnection.executeUpdate(updateSql);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public boolean delete(Repair entity) {
-        String deleteSql = "DELETE FROM repair WHERE repair_ID=?";
-        Object[] params = new Object[1];
-        params[0] = entity.getPreairId();
-        MysqlConnection.executeUpdate(deleteSql, params);
-        return true;
+        try {
+            String deleteSql = "DELETE FROM repair WHERE repair_ID=?";
+            Object[] params = new Object[1];
+            params[0] = entity.getPreairId();
+            MysqlConnection.executeUpdate(deleteSql, params);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

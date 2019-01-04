@@ -51,42 +51,54 @@ public class TroubleshootingManager implements EntityManager<Troubleshooting> {
 
     @Override
     public boolean insert(Troubleshooting entity) {
-        String insertSql = "INSERT INTO troubleshooting (time, operator, description, repair_fee_ID, device_ID) values(?,?,?,?,?)";
-        Object[] params = new Object[5];
-        params[0] = entity.getTime();
-        params[1] = entity.getOperator();
-        params[2] = entity.getDescription();
-        params[3] = entity.getRepairFeeId();
-        params[4] = entity.getDeviceId();
-        MysqlConnection.executeUpdate(insertSql,params);
-        return true;
+        try {
+            String insertSql = "INSERT INTO troubleshooting (time, operator, description, repair_fee_ID, device_ID) values(?,?,?,?,?)";
+            Object[] params = new Object[5];
+            params[0] = entity.getTime();
+            params[1] = entity.getOperator();
+            params[2] = entity.getDescription();
+            params[3] = entity.getRepairFeeId();
+            params[4] = entity.getDeviceId();
+            MysqlConnection.executeUpdate(insertSql, params);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public boolean update(Troubleshooting entity) {
-        Integer troubleshooting_ID = entity.getTroubleshootingId();
-        Timestamp timestamp = entity.getTime();
-        String operator = entity.getOperator();
-        String description = entity.getDescription();
-        Integer repair_fee_ID = entity.getRepairFeeId();
-        Integer device_ID = entity.getDeviceId();
-        String updateSql = "UPDATE troubleshooting set ";
-        if(timestamp != null) updateSql += " time='" + timestamp + "' ,";
-        if(operator != null) updateSql += " operator='" + operator + "' ,";
-        if(description != null) updateSql += "description='" + description + "' ,";
-        if(repair_fee_ID != null) updateSql += " repair_fee_ID='" + repair_fee_ID + "' ,";
-        if(device_ID != null) updateSql += " device_ID='" + device_ID + "' ,";
-        updateSql = updateSql.substring(0, updateSql.length() - 1) + " WHERE troubleshooting_ID='" + troubleshooting_ID + "'";
-        MysqlConnection.executeUpdate(updateSql);
-        return true;
+        try {
+            Integer troubleshooting_ID = entity.getTroubleshootingId();
+            Timestamp timestamp = entity.getTime();
+            String operator = entity.getOperator();
+            String description = entity.getDescription();
+            Integer repair_fee_ID = entity.getRepairFeeId();
+            Integer device_ID = entity.getDeviceId();
+            String updateSql = "UPDATE troubleshooting set ";
+            if (timestamp != null) updateSql += " time='" + timestamp + "' ,";
+            if (operator != null) updateSql += " operator='" + operator + "' ,";
+            if (description != null) updateSql += "description='" + description + "' ,";
+            if (repair_fee_ID != null) updateSql += " repair_fee_ID='" + repair_fee_ID + "' ,";
+            if (device_ID != null) updateSql += " device_ID='" + device_ID + "' ,";
+            updateSql = updateSql.substring(0, updateSql.length() - 1) + " WHERE troubleshooting_ID='" + troubleshooting_ID + "'";
+            MysqlConnection.executeUpdate(updateSql);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public boolean delete(Troubleshooting entity) {
-        String deleteSql = "DELETE FROM troubleshooting WHERE troubleshooting_ID = ?";
-        Object[] params = new Object[1];
-        params[0] = entity.getTroubleshootingId();
-        MysqlConnection.executeUpdate(deleteSql,params);
-        return true;
+        try {
+            String deleteSql = "DELETE FROM troubleshooting WHERE troubleshooting_ID = ?";
+            Object[] params = new Object[1];
+            params[0] = entity.getTroubleshootingId();
+            MysqlConnection.executeUpdate(deleteSql, params);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

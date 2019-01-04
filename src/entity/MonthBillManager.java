@@ -1,9 +1,6 @@
 package entity;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +41,7 @@ public class MonthBillManager {
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"property"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"parking"));
             }
             return monthBills;
         }, params);
@@ -71,7 +68,7 @@ public class MonthBillManager {
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"property"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"parking"));
             }
             return monthBills;
         });

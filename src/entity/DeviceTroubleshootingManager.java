@@ -69,7 +69,7 @@ public class DeviceTroubleshootingManager {
     }
 
     public List<DeviceTroubleshooting> get(){
-        String selectRepairFeeSql = "SELECT device_ID, count(*) as count, count(amount) as amounts FROM repair_fee natural join troubleshooting natural join device WHERE time between ? and ? group by device_ID";
+        String selectRepairFeeSql = "SELECT device_ID, count(*) as count, count(amount) as amounts FROM repair_fee natural join troubleshooting natural join device group by device_ID";
         Object o = MysqlConnection.select(selectRepairFeeSql, rs -> {
             List<DeviceTroubleshooting> deviceTroubleshootings = new ArrayList<>();
             while (rs.next()){

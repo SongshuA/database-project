@@ -70,7 +70,7 @@ public class CommunityManager implements EntityManager<Community>{
     public boolean delete(Community entity) {
         String name = entity.getName();
         // 查找名称为 name 的小区对象并删除
-        String deleteSql = "DELETE FROM community WHERE name= ?";
+        String deleteSql = "DELETE FROM community WHERE community_name= ?";
         Object[] params = new Object[1];
         params[0] = name;
         MysqlConnection.executeUpdate(deleteSql, params);

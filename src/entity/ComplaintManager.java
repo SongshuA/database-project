@@ -26,7 +26,7 @@ public class ComplaintManager {
         Object o = MysqlConnection.select(selectSql, rs -> {
             List<Complaint> complaints = new ArrayList<>();
             while (rs.next()) {
-                complaints.add(new Complaint(rs.getInt("complaint_ID"), rs.getString("type"), rs.getTimestamp("time"), rs.getString("description"), rs.getInt("household_id"), rs.getTimestamp("schedule"), rs.getString("outcome"), rs.getTimestamp("outcome_time")));
+                complaints.add(new Complaint(rs.getInt("complaint_ID"), rs.getString("type"), rs.getTimestamp("time"), rs.getString("description"), rs.getInt("household_id"),rs.getString("outcome"), rs.getTimestamp("outcome_time")));
             }
             return complaints;
         });
@@ -52,7 +52,7 @@ public class ComplaintManager {
         Object o = MysqlConnection.select(selectSql, rs -> {
             List<Complaint> complaints = new ArrayList<>();
             while (rs.next()) {
-                complaints.add(new Complaint(rs.getInt("complaint_ID"), rs.getString("type"), rs.getTimestamp("time"), rs.getString("description"), rs.getInt("household_id"), rs.getTimestamp("schedule"), rs.getString("outcome"), rs.getTimestamp("outcome_time")));
+                complaints.add(new Complaint(rs.getInt("complaint_ID"), rs.getString("type"), rs.getTimestamp("time"), rs.getString("description"), rs.getInt("household_id"), rs.getString("outcome"), rs.getTimestamp("outcome_time")));
             }
             return complaints;
         }, params);
@@ -79,7 +79,7 @@ public class ComplaintManager {
         Object o = MysqlConnection.select(selectSql, rs -> {
             List<Complaint> complaints = new ArrayList<>();
             while (rs.next()){
-                complaints.add(new Complaint(rs.getInt("complaint_ID"), rs.getString("type"), rs.getTimestamp("time"), rs.getString("description"), rs.getInt("household_id"), rs.getTimestamp("schedule"), rs.getString("outcome"), rs.getTimestamp("outcome_time")));
+                complaints.add(new Complaint(rs.getInt("complaint_ID"), rs.getString("type"), rs.getTimestamp("time"), rs.getString("description"), rs.getInt("household_id"), rs.getString("outcome"), rs.getTimestamp("outcome_time")));
             }
             return complaints;
         });
@@ -89,16 +89,15 @@ public class ComplaintManager {
 
 
     public boolean insert(Complaint complaint) {
-        String insertSql = "INSERT INTO complaint (complaint_ID, type, time, description, household_id, schedule, outcome, outcome_time) values(?,?,?,?,?,?,?,?)";
+        String insertSql = "INSERT INTO complaint (complaint_ID, type, time, description, household_id,outcome, outcome_time) values(?,?,?,?,?,?,?)";
         Object[] params = new Object[8];
         params[0] = complaint.getId();
         params[1] = complaint.getType();
         params[2] = complaint.getTime();
         params[3] = complaint.getDescription();
         params[4] = complaint.getHouseholdId();
-        params[5] = complaint.getSchedule();
-        params[6] = complaint.getOutcome();
-        params[7] = complaint.getOutcomeTime();
+        params[5] = complaint.getOutcome();
+        params[6] = complaint.getOutcomeTime();
         MysqlConnection.executeUpdate(insertSql, params);
         return true;
     }
@@ -110,15 +109,13 @@ public class ComplaintManager {
         Timestamp time = complaint.getTime();
         String description = complaint.getDescription();
         Integer householdId = complaint.getHouseholdId();
-        Timestamp schedule = complaint.getSchedule();
         String outcome = complaint.getOutcome();
         Timestamp outcomeTime = complaint.getOutcomeTime();
         if (null != type) updateSql += "type='" + type + "' ,";
         if (null != time) updateSql += "time='" + time + "' ,";
         if (null != description) updateSql += "description='" + description + "' ,";
         if (null != householdId) updateSql += "household_id='" + householdId + "' ,";
-        if (null != schedule) updateSql += "schedule='" + schedule + "' ,";
-        if (null != outcome) updateSql += "outcome='" + schedule + "' ,";
+        if (null != outcome) updateSql += "outcome='" + outcome + "' ,";
         if (null != outcomeTime) updateSql += "outcome_time'" + outcomeTime + "' ,";
         updateSql += updateSql.substring(0, updateSql.length() - 1 ) + " WHERE complaint_ID = '" + ID + "'";
         MysqlConnection.executeUpdate(updateSql);

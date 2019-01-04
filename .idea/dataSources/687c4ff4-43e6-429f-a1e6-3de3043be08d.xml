@@ -1428,185 +1428,190 @@
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="337" parent="242" name="device_in_repair">
+    <column id="337" parent="242" name="repair_fee_ID">
+      <Position>10</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="338" parent="242" name="device_in_repair">
       <ColNames>device_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="338" parent="242" name="household_in_repair">
+    <index id="339" parent="242" name="household_in_repair">
       <ColNames>household_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="339" parent="242" name="PRIMARY">
+    <index id="340" parent="242" name="repair_fee_in_repair">
+      <ColNames>repair_fee_ID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="341" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>repair_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="340" parent="242" name="device_in_repair">
+    <foreign-key id="342" parent="242" name="device_in_repair">
       <ColNames>device_ID</ColNames>
       <RefSchemaName>dbpj</RefSchemaName>
       <RefTableName>device</RefTableName>
       <RefColNames>device_ID</RefColNames>
     </foreign-key>
-    <foreign-key id="341" parent="242" name="household_in_repair">
+    <foreign-key id="343" parent="242" name="household_in_repair">
       <ColNames>household_ID</ColNames>
       <RefSchemaName>dbpj</RefSchemaName>
       <RefTableName>household</RefTableName>
       <RefColNames>household_ID</RefColNames>
     </foreign-key>
-    <column id="342" parent="243" name="repair_fee_ID">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="343" parent="243" name="repair_ID">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="344" parent="243" name="amount">
-      <Position>3</Position>
-      <DataType>float(255,2 digit)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="345" parent="243" name="time">
-      <Position>4</Position>
-      <DataType>datetime|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="346" parent="243" name="paied">
-      <Position>5</Position>
-      <DataType>tinyint(1)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="347" parent="243" name="description">
-      <Position>6</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="348" parent="243" name="repair_table_ID">
-      <ColNames>repair_ID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="349" parent="243" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>repair_fee_ID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="350" parent="244" name="resident_ID">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="351" parent="244" name="name">
-      <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="352" parent="244" name="contact">
-      <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="353" parent="244" name="house_ID">
-      <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="354" parent="244" name="house_ID">
-      <ColNames>house_ID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="355" parent="244" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>resident_ID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="356" parent="245" name="temporary_slot_ID">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="357" parent="245" name="card">
-      <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="358" parent="245" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>temporary_slot_ID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="359" parent="245" name="parking_in_temporary">
-      <ColNames>temporary_slot_ID</ColNames>
-      <RefSchemaName>dbpj</RefSchemaName>
-      <RefTableName>parking_slot</RefTableName>
-      <RefColNames>parking_slot_ID</RefColNames>
-    </foreign-key>
-    <column id="360" parent="246" name="trobleshooting_ID">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="361" parent="246" name="time">
-      <Position>2</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="362" parent="246" name="operator">
-      <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="363" parent="246" name="description">
-      <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="364" parent="246" name="repair_fee_ID">
-      <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="365" parent="246" name="device_ID">
-      <Position>6</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="366" parent="246" name="repair_fee_in_trouble">
-      <ColNames>repair_fee_ID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="367" parent="246" name="device_in_trouble">
-      <ColNames>device_ID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="368" parent="246" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>trobleshooting_ID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="369" parent="246" name="repair_fee_in_trouble">
+    <foreign-key id="344" parent="242" name="repair_fee_in_repair">
       <ColNames>repair_fee_ID</ColNames>
       <RefSchemaName>dbpj</RefSchemaName>
       <RefTableName>repair_fee</RefTableName>
       <RefColNames>repair_fee_ID</RefColNames>
     </foreign-key>
-    <foreign-key id="370" parent="246" name="device_in_trouble">
+    <column id="345" parent="243" name="repair_fee_ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="346" parent="243" name="amount">
+      <Position>2</Position>
+      <DataType>float(255,2 digit)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="347" parent="243" name="time">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="348" parent="243" name="paied">
+      <Position>4</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="349" parent="243" name="description">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="350" parent="243" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>repair_fee_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="351" parent="244" name="resident_ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="352" parent="244" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="353" parent="244" name="contact">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="354" parent="244" name="house_ID">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="355" parent="244" name="house_ID">
+      <ColNames>house_ID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="356" parent="244" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>resident_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="357" parent="245" name="temporary_slot_ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="358" parent="245" name="card">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="359" parent="245" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>temporary_slot_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="360" parent="245" name="parking_in_temporary">
+      <ColNames>temporary_slot_ID</ColNames>
+      <RefSchemaName>dbpj</RefSchemaName>
+      <RefTableName>parking_slot</RefTableName>
+      <RefColNames>parking_slot_ID</RefColNames>
+    </foreign-key>
+    <column id="361" parent="246" name="trobleshooting_ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="362" parent="246" name="time">
+      <Position>2</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="363" parent="246" name="operator">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="364" parent="246" name="description">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="365" parent="246" name="repair_fee_ID">
+      <Position>5</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="366" parent="246" name="device_ID">
+      <Position>6</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="367" parent="246" name="repair_fee_in_trouble">
+      <ColNames>repair_fee_ID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="368" parent="246" name="device_in_trouble">
+      <ColNames>device_ID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="369" parent="246" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>trobleshooting_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="370" parent="246" name="repair_fee_in_trouble">
+      <ColNames>repair_fee_ID</ColNames>
+      <RefSchemaName>dbpj</RefSchemaName>
+      <RefTableName>repair_fee</RefTableName>
+      <RefColNames>repair_fee_ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="371" parent="246" name="device_in_trouble">
       <ColNames>device_ID</ColNames>
       <RefSchemaName>dbpj</RefSchemaName>
       <RefTableName>device</RefTableName>

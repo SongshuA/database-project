@@ -22,14 +22,14 @@ public class UserRepairManager {
 
     public List<UserRepair> get(Integer beginYear, Integer beginMonth, Integer endYear, Integer endMonth){
         List<Timestamp> timestamps = DateCreate.create(beginYear,beginMonth,endYear,endMonth);
-        String selectSql = "SELECT household_ID, count(*) as count, count(amount) as amounts FROM household natural join repair natural join repair_fee WHERE time between ? and ? group by household_ID";
+        String selectSql = "SELECT household_ID, count(*) as count, sum(amount) as amounts FROM household natural join `repair` join repair_fee on `repair`.repair_fee_ID=repair_fee.repair_fee_ID WHERE `repair`.time between ? and ? group by household_ID";
         Object[] params = new Object[2];
         params[0] = timestamps.get(0);
         params[1] = timestamps.get(1);
         Object o = MysqlConnection.select(selectSql, rs->{
            List<UserRepair> userRepairs = new ArrayList<>();
            while (rs.next()){
-               userRepairs.add(new UserRepair(rs.getInt("household_ID"), rs.getInt("count"), rs.getInt("amounts")));
+               userRepairs.add(new UserRepair(rs.getInt("household_ID"), rs.getInt("count"), rs.getDouble("amounts")));
            }
            return userRepairs;
         }, params);
@@ -37,11 +37,11 @@ public class UserRepairManager {
     }
 
     public List<UserRepair> get(){
-        String selectSql = "SELECT household_ID, count(*) as count, count(amount) as amounts FROM household natural join repair natural join repair_fee group by household_ID";
+        String selectSql = "SELECT household_ID, count(*) as count, sum(amount) as amounts FROM household natural join `repair` join repair_fee on `repair`.repair_fee_ID=repair_fee.repair_fee_ID group by household_ID";
         Object o = MysqlConnection.select(selectSql, rs->{
             List<UserRepair> userRepairs = new ArrayList<>();
             while (rs.next()){
-                userRepairs.add(new UserRepair(rs.getInt("household_ID"), rs.getInt("count"), rs.getInt("amounts")));
+                userRepairs.add(new UserRepair(rs.getInt("household_ID"), rs.getInt("count"), rs.getDouble("amounts")));
             }
             return userRepairs;
         });

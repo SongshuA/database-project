@@ -2,8 +2,8 @@ package entity;
 
 public class DeviceTroubleshooting implements Entity{
     private Integer deviceId;
-    private Integer brokenCount;
-    private Integer repairCount;
+    private Integer brokenCount;//损坏次数
+    private Integer repairCount;//保修次数
     private double countFee;
 
     public int getDeviceId() {

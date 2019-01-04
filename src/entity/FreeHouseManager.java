@@ -77,6 +77,7 @@ public class FreeHouseManager implements EntityManager<FreeHouse> {
     }
 
     public List<FreeHouse> get(String community_name){
+        if(community_name == null) return get();
         String selectSql = "SELECT * FROM house natural join community WHERE community.community_name = ? and house.house_ID not in (SELECT distinct house_ID FROM household)";
         Object[] params = new Object[1];
         params[0] = community_name;

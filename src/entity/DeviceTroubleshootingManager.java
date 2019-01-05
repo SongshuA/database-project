@@ -74,20 +74,43 @@ public class DeviceTroubleshootingManager implements EntityManager<DeviceTrouble
         Object b = MysqlConnection.select(selectRepairSql, rs -> {
             List<DeviceTroubleshooting> deviceTroubleshootings1 = new ArrayList<>();
             while (rs.next()){
-                deviceTroubleshootings1.add(new DeviceTroubleshooting(rs.getInt("device_ID"), null, rs.getInt("repairCount"),0));
+                deviceTroubleshootings1.add(new DeviceTroubleshooting(rs.getInt("device_ID"), null, rs.getInt("repairCount"),0.0));
             }
             return deviceTroubleshootings1;
         },paramsRepair);
         List<DeviceTroubleshooting> deviceTroubleshootings1 =  (List<DeviceTroubleshooting>)b;
         int length1 = deviceTroubleshootings1.size();
+        Boolean repairCount;
         for(int i = 0;i<length;i++){
+            repairCount = false;
             DeviceTroubleshooting deviceTroubleshooting = deviceTroubleshootings.get(i);
             for(int j = 0;j<length1;j++){
                 DeviceTroubleshooting deviceTroubleshooting1 = deviceTroubleshootings1.get(j);
                 if(deviceTroubleshooting.getDeviceId() == deviceTroubleshooting1.getDeviceId()){
+                    repairCount = true;
                     deviceTroubleshooting.setRepairCount(deviceTroubleshooting1.getRepairCount());
                 }
+                if(!repairCount) deviceTroubleshooting.setRepairCount(0);
             }
+        }
+        String selectSql = "SELECT * FROM device";
+        Object t = MysqlConnection.select(selectSql, rs->{
+            List<DeviceTroubleshooting> deviceIds = new ArrayList<>();
+            while (rs.next()){
+                deviceIds.add(new DeviceTroubleshooting(rs.getInt("device_ID"),null,null,null));
+            }
+            return deviceIds;
+        });
+        List<DeviceTroubleshooting> deviceTroubleshootings2 = (List<DeviceTroubleshooting>)t;
+        int length2 = deviceTroubleshootings2.size();
+        boolean find;
+        for(int i = 0;i<length2; i++){
+            find = false;
+            DeviceTroubleshooting deviceTroubleshooting = deviceTroubleshootings2.get(i);
+            for(int j = 0;j<length;j++){
+                if(deviceTroubleshooting.getDeviceId() == deviceTroubleshootings.get(j).getDeviceId()) find = true;
+            }
+            if(!find) deviceTroubleshootings.add(new DeviceTroubleshooting(deviceTroubleshooting.getDeviceId(),0,0,0.0));
         }
         return deviceTroubleshootings;
     }
@@ -119,20 +142,44 @@ public class DeviceTroubleshootingManager implements EntityManager<DeviceTrouble
         Object b = MysqlConnection.select(selectRepairSql, rs -> {
             List<DeviceTroubleshooting> deviceTroubleshootings1 = new ArrayList<>();
             while (rs.next()){
-                deviceTroubleshootings1.add(new DeviceTroubleshooting(rs.getInt("device_ID"), null, rs.getInt("repairCount"),0));
+                deviceTroubleshootings1.add(new DeviceTroubleshooting(rs.getInt("device_ID"), null, rs.getInt("repairCount"),0.0));
             }
             return deviceTroubleshootings1;
         });
         List<DeviceTroubleshooting> deviceTroubleshootings1 =  (List<DeviceTroubleshooting>)b;
         int length1 = deviceTroubleshootings1.size();
+        Boolean repairCount;
         for(int i = 0;i<length;i++){
+            repairCount = false;
             DeviceTroubleshooting deviceTroubleshooting = deviceTroubleshootings.get(i);
             for(int j = 0;j<length1;j++){
                 DeviceTroubleshooting deviceTroubleshooting1 = deviceTroubleshootings1.get(j);
                 if(deviceTroubleshooting.getDeviceId() == deviceTroubleshooting1.getDeviceId()){
+                    repairCount = true;
                     deviceTroubleshooting.setRepairCount(deviceTroubleshooting1.getRepairCount());
                 }
+                if(!repairCount) deviceTroubleshooting.setRepairCount(0);
             }
         }
-        return deviceTroubleshootings;    }
+        String selectSql = "SELECT * FROM device";
+        Object t = MysqlConnection.select(selectSql, rs->{
+            List<DeviceTroubleshooting> deviceIds = new ArrayList<>();
+            while (rs.next()){
+                deviceIds.add(new DeviceTroubleshooting(rs.getInt("device_ID"),null,null,null));
+            }
+            return deviceIds;
+        });
+        List<DeviceTroubleshooting> deviceTroubleshootings2 = (List<DeviceTroubleshooting>)t;
+        int length2 = deviceTroubleshootings2.size();
+        boolean find;
+        for(int i = 0;i<length2; i++){
+            find = false;
+            DeviceTroubleshooting deviceTroubleshooting = deviceTroubleshootings2.get(i);
+            for(int j = 0;j<length;j++){
+                if(deviceTroubleshooting.getDeviceId() == deviceTroubleshootings.get(j).getDeviceId()) find = true;
+            }
+            if(!find) deviceTroubleshootings.add(new DeviceTroubleshooting(deviceTroubleshooting.getDeviceId(),0,0,0.0));
+        }
+        return deviceTroubleshootings;
+    }
 }

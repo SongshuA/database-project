@@ -4,43 +4,43 @@ public class DeviceTroubleshooting implements Entity{
     private Integer deviceId;
     private Integer brokenCount;//损坏次数
     private Integer repairCount;//保修次数
-    private double countFee;
+    private Double countFee;
 
     public DeviceTroubleshooting(){}
 
-    public int getDeviceId() {
+    public Integer getDeviceId() {
         return deviceId;
     }
 
-    public void setDeviceId(int deviceId) {
+    public void setDeviceId(Integer deviceId) {
         this.deviceId = deviceId;
     }
 
-    public int getBrokenCount() {
+    public Integer getBrokenCount() {
         return brokenCount;
     }
 
-    public void setBrokenCount(int brokenCount) {
+    public void setBrokenCount(Integer brokenCount) {
         this.brokenCount = brokenCount;
     }
 
-    public int getRepairCount() {
+    public Integer getRepairCount() {
         return repairCount;
     }
 
-    public void setRepairCount(int repairCount) {
+    public void setRepairCount(Integer repairCount) {
         this.repairCount = repairCount;
     }
 
-    public double getCountFee() {
+    public Double getCountFee() {
         return countFee;
     }
 
-    public void setCountFee(double countFee) {
+    public void setCountFee(Double countFee) {
         this.countFee = countFee;
     }
 
-    public DeviceTroubleshooting(Integer deviceId, Integer brokenCount, Integer repairCount, double countFee) {
+    public DeviceTroubleshooting(Integer deviceId, Integer brokenCount, Integer repairCount, Double countFee) {
         this.deviceId = deviceId;
         this.brokenCount = brokenCount;
         this.repairCount = repairCount;

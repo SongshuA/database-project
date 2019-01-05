@@ -48,7 +48,7 @@ public class MonthBillManager implements EntityManager<MonthBill>{
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"), rs.getTimestamp("time"),paied,"property"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"), rs.getTimestamp("time"),paied,"物业费"));
             }
             return monthBills;
         }, params);
@@ -58,7 +58,7 @@ public class MonthBillManager implements EntityManager<MonthBill>{
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"parking"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"停车位"));
             }
             return monthBills;
         }, params);
@@ -75,7 +75,7 @@ public class MonthBillManager implements EntityManager<MonthBill>{
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"), rs.getTimestamp("time"),paied,"property"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"), rs.getTimestamp("time"),paied,"物业费"));
             }
             return monthBills;
         });
@@ -85,7 +85,7 @@ public class MonthBillManager implements EntityManager<MonthBill>{
             List<MonthBill> monthBills = new ArrayList<>();
             while (rs.next()){
                 boolean paied = rs.getInt("paied") == 1;
-                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"parking"));
+                monthBills.add(new MonthBill(rs.getInt("household_ID"),rs.getFloat("amount"),rs.getTimestamp("time"),paied,"停车位"));
             }
             return monthBills;
         });

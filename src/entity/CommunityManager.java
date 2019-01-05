@@ -66,7 +66,7 @@ public class CommunityManager implements EntityManager<Community> {
             if (null != property_fee) updateSql += " property_fee='" + property_fee + "' ,";
             if (null != rent_fee) updateSql += " rent_fee='" + rent_fee + "' ,";
             if (null != purchase_fee) updateSql += " purchase_fee='" + purchase_fee + "' ,";
-            updateSql = updateSql.substring(0, updateSql.length() - 1) + "WHERE community_name =" + "'" + name + "'";
+            updateSql = updateSql.substring(0, updateSql.length() - 1) + " WHERE community_name =" + "'" + name + "'";
             MysqlConnection.executeUpdate(updateSql);
             return true;
         } catch (Exception e) {

@@ -1,9 +1,5 @@
 package entity;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,8 +102,8 @@ public class ComplaintManager implements EntityManager<Complaint>{
             if (null != time) updateSql += "time='" + time + "' ,";
             if (null != description) updateSql += "description='" + description + "' ,";
             if (null != householdId) updateSql += "household_id='" + householdId + "' ,";
-            if (null != outcome) updateSql += "outcome='" + outcome + "' ,";
-            if (null != outcomeTime) updateSql += "outcome_time'" + outcomeTime + "' ,";
+            if (null != outcome) updateSql += "outcome= '" + outcome + "' ,";
+            if (null != outcomeTime) updateSql += "outcome_time = '" + outcomeTime + "' ,";
             updateSql += updateSql.substring(0, updateSql.length() - 1) + " WHERE complaint_ID = '" + ID + "'";
             MysqlConnection.executeUpdate(updateSql);
             return true;

@@ -13,7 +13,7 @@ public class ComplaintPanel extends Panel {
         super(Complaint.class, ComplaintManager.getInstance(), new String[]{
                 "beginYear", "beginMonth", "endYear", "endMonth",
                 "community_name", "unit_ID", "house_ID", "household_ID", "type"
-        }, false);
+        }, true);
 
         this.queryPane.setOnQuery(queries -> {
             ComplaintManager manager = (ComplaintManager)this.manager;

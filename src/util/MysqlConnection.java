@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class MysqlConnection {
     private static String url = "jdbc:mysql://localhost:3306/dbpj?characterEncoding=utf-8";
     private static String user = "root";
-    private static String password = "971219";
+    private static String password = "6366222";
 
     private static Connection getConnection() {
         try {

@@ -101,9 +101,9 @@ public class ComplaintManager implements EntityManager<Complaint>{
             if (null != type) updateSql += "type='" + type + "' ,";
             if (null != time) updateSql += "time='" + time + "' ,";
             if (null != description) updateSql += "description='" + description + "' ,";
-            if (null != householdId) updateSql += "household_id='" + householdId + "' ,";
-            if (null != outcome) updateSql += "outcome= '" + outcome + "' ,";
-            if (null != outcomeTime) updateSql += "outcome_time = '" + outcomeTime + "' ,";
+            if (null != householdId) updateSql += "household_ID='" + householdId + "' ,";
+            if (null != outcome) updateSql += "outcome='" + outcome + "' ,";
+            if (null != outcomeTime) updateSql += "outcome_time='" + outcomeTime + "' ,";
             updateSql += updateSql.substring(0, updateSql.length() - 1) + " WHERE complaint_ID = '" + ID + "'";
             MysqlConnection.executeUpdate(updateSql);
             return true;

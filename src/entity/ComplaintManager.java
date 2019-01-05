@@ -98,16 +98,17 @@ public class ComplaintManager implements EntityManager<Complaint>{
             Integer householdId = complaint.getHouseholdId();
             String outcome = complaint.getOutcome();
             Timestamp outcomeTime = complaint.getOutcomeTime();
-            if (null != type) updateSql += "type='" + type + "' ,";
-            if (null != time) updateSql += "time='" + time + "' ,";
-            if (null != description) updateSql += "description='" + description + "' ,";
-            if (null != householdId) updateSql += "household_ID='" + householdId + "' ,";
-            if (null != outcome) updateSql += "outcome='" + outcome + "' ,";
-            if (null != outcomeTime) updateSql += "outcome_time='" + outcomeTime + "' ,";
-            updateSql += updateSql.substring(0, updateSql.length() - 1) + " WHERE complaint_ID = '" + ID + "'";
+            if (null != type) updateSql += " type='" + type + "' ,";
+            if (null != time) updateSql += " time='" + time + "' ,";
+            if (null != description) updateSql += " description='" + description + "' ,";
+            if (null != householdId) updateSql += " household_ID='" + householdId + "' ,";
+            if (null != outcome) updateSql += " outcome='" + outcome + "' ,";
+            if (null != outcomeTime) updateSql += " outcome_time='" + outcomeTime + "' ,";
+            updateSql = updateSql.substring(0, updateSql.length() - 1) + " WHERE complaint_ID = '" + ID + "'";
             MysqlConnection.executeUpdate(updateSql);
             return true;
         }catch (Exception e){
+            e.printStackTrace();
             return false;
         }
     }
